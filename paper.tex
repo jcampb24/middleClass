@@ -1,1 +1,783 @@
+\documentclass[fleqccn,12pt]{article}
+\usepackage{amsmath} %For the align environment.
+\usepackage{pgf} %For importing graphics.
+\usepackage{vmargin} %For setting the paper size and margins.
+\usepackage{natbib} %For author (date) bibliographic citations.
+\usepackage{rotating} %For turning tables on their sides
+\usepackage{hyperref} %For linking citations to their bibliographic entries.
+\setpapersize{USletter}\setmargrb{25mm}{18mm}{25mm}{23mm} %Set the paper size and margins
+\renewcommand{\baselinestretch}{1.2} %Goldilocks spacing between lines.
+
+%Set pdf file metadata and link colors.
+\hypersetup{colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=red,
+    pdftitle=Liquidity Constraints of the Middle Class,
+    pdfauthor=Jeffrey R. Campbell and Zvi Hercowitz,
+    pdfsubject=Macroeconomics of Consumption,
+    pdfkeywords={Fiscal Policy, Tax Rebates, Marginal Propensity to Consume, Term Saving, Precautionary Saving},
+    pdfdisplaydoctitle=true}
+
+%Create environments for propositions, lemmas, questions, and proofs.
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{question}[theorem]{Question}
+\newenvironment{proof}[1][Proof]{\noindent\textbf{#1.} }{\ \rule{0.5em}{0.5em}}
+
+%The following command creates a zero-space minus sign. This is useful in tables when trying to align columns of numbers at their decimal points.
+\newcommand{\zminus}{\makebox[0pt][r]{-}}
+
+%Create a possessive version of the \cite command.    
+\newcommand{\cites}[1]{\citeauthor{#1}'s (\citeyear{#1})}
+
+%Import the paper's single figure. 
+\pgfdeclareimage[height=11cm]{nonstochasticCycle}{./nonstochasticCycle}
+
+\begin{document}
+
+\title{Liquidity Constraints of the Middle Class\thanks{We thank R. Andrew Butters, Ross Doppelt, and Ryan Peters for their excellent research assistance and Sumit Agarwal, Gadi Barlevy, Mariacristina DeNardi, Eric French, Simon Gilchrist, Costas Meghir, Jonathan Parker, Monika Piazzesi and Gianluca Violante for their thoughtful comments. The views expressed herein are those of the authors. They do not necessarily reflect the views of the Federal Reserve Bank of Chicago, the Federal Reserve System, or its Board of Governors.}}
+\author{Jeffrey R. Campbell\thanks{Federal Reserve Bank of Chicago, USA and CentER, Tilburg University, The Netherlands. \texttt{Jeff.Campbell@chi.frb.org}} \hspace{24pt} Zvi Hercowitz\thanks{Interdisciplinary Center Herzliya, Israel and Tel Aviv University, Israel.  \texttt{Zvi.Hercowitz@idc.ac.il} \medskip\newline JEL Code: E21
+\newline Keywords: Fiscal Policy, Tax Rebates, Marginal Propensity to Consume, Term Saving, Precautionary Saving} }
+\date{April 2019}
+
+\maketitle
+\thispagestyle{empty}
+\setcounter{page}{0}
+\begin{abstract}
+Existing evidence from U.S. middle-class households shows that their MPCs out of tax rebates greatly exceed the PIH's prediction and are weakly related to their liquid assets. The standard precautionary-saving model predicts the first fact but counterfactually requires MPCs to decrease with liquid wealth. Evidence from the Survey of Consumer Finances indicates widespread saving in anticipation of major expenditures like home purchases and college education. Adding such savings to the standard precautionary-saving model allows it to generate realistic MPCs for households with liquid wealth: The approaching expenditure simultaneously motivates asset accumulation and raises MPCs by shortening the effective planning horizon.  
+\end{abstract}
+
+\newpage
+
+\section{Introduction}
+
+Liquidity constraints of middle-class households are of key importance for a host of macroeconomic policy questions, such as the size of the fiscal multiplier from tax cuts and the nature of monetary policy propagation. However, it might seem implausible that middle-class households face liquidity constraints because they typically hold liquid assets. By definition, these can be converted immediately into consumption. Evidence from consumption responses to tax changes in the U.S. casts doubt on this view. For example, \citet*{taxPolicy2010SahmShapiroSlemrod} found that households that own publicly-traded stocks reported spending no less and probably more out the one-time 2008 Economic Stimulus Payments than did poorer and more plausibly liquidity-constrained households. That is, there is evidence that middle-class households with liquid wealth can act as if they face substantial liquidity constraints.
+
+ \cite{ecta1996CarrollKimball} proved that the consumption function from a precautionary-saving model is concave in cash on hand (the sum of current earnings and past savings). Therefore, that model's consumption responses to one-time tax rebates \emph{decline} with household wealth. To bridge this gap between theory and data, we consider the possibility that a household's assets are accumulated to pay for a foreseen major expense. In that case, high assets signal a \emph{shortage of liquidity} relative to the approaching expense rather than an abundance of liquidity arising from past good luck. For a household expecting such an expense, the time remaining until it arrives is a key state variable. Hence, we call the accumulated assets \emph{term savings}.  We provide household-level evidence from the Survey of Consumer Finances (SCF) that term-saving motivations (particularly the purchase of a house or the payment of a child's college tuition) are at least as prevalent among the middle class as are standard precautionary savings motivations like earnings risk. Across the five SCF waves from 1995 to 2007, the average percentage of households reporting precautionary reasons for saving is 36.3 while for anticipated expenditures the average percentage is 41.7. Table 4 in Section 2 reports the details.
+ 
+Term saving does not overturn the basic notion that high MPCs reflect liquidity constraints. However, it does bring into question the common view that only individuals with little liquid wealth can be liquidity constrained. With term saving, an expectation that liquid wealth will be low in the \emph{future} can induce households with currently substantial liquid assets to display high MPCs today. Such expectations arise naturally when households foresee an approaching large expenditure.
+
+For our empirical analysis, we assign households to the middle class if they are not in the top five percentiles of the wealth distribution, had after-tax labor income above the poverty line, and did not receive aid from the Supplemental Nutrition Assistance Program in the previous year. This definition allows for the possibility that middle-class households occasionally spend all available financial assets. Our matching theoretical definition of a middle-class household combines impatience (relative to the market rate of interest), a borrowing constraint and a recurring major expenditure. We incorporate such a large foreseen expenditure into a standard stochastic model of an infinitely-lived household. The model's earnings risk by itself generates well-understood precautionary-saving behavior. Adding the recurring major expenditure removes that model's predicted negative relationship between liquid wealth and the MPC. Indeed, our calibrated model has high-wealth apparently liquid households with MPCs similar to those of low-wealth certainly illiquid households. 
+
+We begin by developing intuition about term saving in a deterministic environment. The household has utility from ordinary consumption and from a special good. Ordinary consumption always increases utility, but the household has a taste for the special good only at equally-spaced points in time. The taste for the special good motivates term savings. For it to induce substantially different behavior than does earnings risk in a precautionary-saving model, the hazard rate for its arrival should \emph{increase} with the time since its last occurrence. The predetermined times for its consumption starkly capture this requirement.  
+
+In this deterministic model, the household eventually settles into a cycle. At its beginning, much time remains until the special good's consumption. Although impatience might initially dominate the household's decisions and drive wealth to zero, consumption smoothing eventually motivates the household to save. When the taste for the special good arrives, the household spends all cash on hand and the borrowing constraint binds again. This cycle exemplifies \cites{mit1984Zeldes} distinction between a currently-binding liquidity constraint and one that could possibly bind in the future.  As he noted, an expectation of future liquidity constraints effectively shortens the horizon over which a currently unconstrained household optimizes and thereby generates a large MPC out of transitory income. Here, assets accumulate as the foreseen expenditure approaches, and so the current model predicts that the observed MPC \emph{rises} with wealth for households that are currently saving.
+
+In the quantitative assessment of the model, precautionary saving generated by earnings risk works against term saving in shaping the empirical relationship between household wealth and the MPC. We calibrate income risk to match observations of earnings from the PSID in \cite{ecta2004MeghirPistaferri} and we choose the household's discount factor and the special good's expenditure share to match percentiles of wealth relative to labor income from middle-class households in recent waves of the SCF.  With this calibration, the average MPC from a one-time transfer greatly exceeds that predicted by the PIH and is a relatively flat function of wealth. For two households at either extreme of the wealth distribution, with no wealth and wealth exceeding current annual earnings, the MPCs equal $53$ percent and $72$ percent. 
+
+The pervasiveness of liquidity constraints has received a great deal of attention in the consumption literature. Using the 1983 SCF, \cite{qje1990Jappelli} found that about 20 percent of U.S. households were either rejected for credit or rationally anticipated being rejected if they applied. Other work has focused on documenting liquidity constraints as violations of \cites{jpe1978Hall} random walk hypothesis for the marginal utility of consumption. Using food consumption data from the PSID, \cite{econometrica1982HallMishkin} found that about 20 percent of consumption is a simple function of current income, as if those households are consuming ``hand-to-mouth.'' Estimating a similar model with aggregate data, \cite{nber1989CampbellMankiw} concluded that ``Half of households follow the `rule-of-thumb' of consuming their current income.'' Also using the PSID, \cite{jpe1989Zeldes} observed that consumption growth of households with low wealth responds negatively to lagged disposable income. Because the analogous estimated response for households with high wealth is weaker and sometimes statistically insignificant, \citeauthor{jpe1989Zeldes} interpreted his results as evidence that low-wealth households are liquidity constrained. With this interpretation, different definitions of ``low wealth'' imply that between 30 to 66 percent of households are liquidity constrained. \cite{annualReview2010JappelliPistaferri} reviewed the considerable literature that has refined this approach and applied it to other countries and data sets. 
+
+\cite{worldCongress1987Hayashi} noted that these studies have only limited implications for the MPCs from temporary income because ``the horizon of those who satisfy the Euler equation is unknown ...''.\footnote{See that article's penultimate sentence for the full context of this quote.} The importance of term saving we document with the SCF leads us to conclude that \citeauthor{worldCongress1987Hayashi}'s ``horizon'' is typically much less than a decade, so that most of the middle class acts as if they are liquidity constrained, even households with considerable liquid wealth. 
+
+\cite{ecta2014KaplanViolante} provided an explanation for large MPCs of middle-class households that complements ours. In their model of ``wealthy hand-to-mouth'' consumers, households save for retirement in a high-return asset with large fixed transaction costs, which they interpreted as housing or retirement accounts, and a low-return liquid asset. They emphasized that if the difference between the two assets' returns is large enough, then those who have converted all of their liquid assets into illiquid assets will have high MPCs in spite of having substantial illiquid wealth. Our model of term saving shows that households currently saving for a foreseen expenditure will also have high MPCs even though they have substantial \emph{liquid} wealth. 
+
+As in this paper, \citet{qje2007ChettySzeidl}  examined the interplay between two consumption goods, one of which is subject to dynamic constraints. In their model, households continuously consume the special good but adjust its purchases infrequently to avoid paying fixed adjustment costs.  Their household displays risk aversion towards small gambles because only ordinary consumption can adjust in response to them. However, the marginal utility of wealth jumps when adjustment of the special good occurs, so their households could benefit from large gambles.  In contrast, households in our model \emph{purchase} the special good infrequently. While we account for risk aversion in our quantitative analysis, the infrequently-purchased special good has no novel impact on the household's risk preferences. Instead, we focus on the implications of infrequent, large, and forecastable special-good purchases for the sensitivity of consumption to tax-induced changes to disposable income.
+
+The remainder of this paper proceeds as follows. In the next section, we review existing evidence about the marginal propensity to consume out of tax rebates in the U.S. and document the prevalence of precautionary and term savings with the SCF.  Section \ref{DeterministicModel} develops the deterministic term saving model, and Section \ref{quantitative} adds earnings uncertainty and considers the quantitative implications of a calibrated version of the model for the evidence reviewed in Section \ref{Evidence}. Section \ref{concluding remarks} offers concluding remarks.
+
+\section{Evidence\label{Evidence}}
+
+This section reviews the evidence on consumption and saving that motivates our exploration of middle-class liquidity constraints. We begin with a review of existing empirical analyses of households' MPCs from tax-induced disposable income changes. We then document the pervasiveness of precautionary and term saving with data from the SCF. 
+
+\subsection{Evidence on MPCs\label{mpc estimates}}
+
+Changes in tax law provide rich opportunities for the empirical investigation of consumption choices in the context of economically-significant, policy-relevant, and plausibly exogenous household income changes. Empirical research measuring MPCs from windfalls has examined households from many countries, but we concentrate on evidence from the United States because we suspect that large foreseen expenditures (particularly those associated with college education) are particularly pervasive among the U.S. middle class.  
+
+\citet{aer2003ShapiroSlemrod,aer2009ShapiroSlemrod}, and \citet*{taxPolicy2010SahmShapiroSlemrod} provided evidence on households' consumption responses from survey data. The Economic Growth and Tax Relief Act of 2001 lowered tax rates retrospectively to the start of 2001, and the Treasury mailed tax rebates to most taxpayers from July to October. \citeauthor*{aer2003ShapiroSlemrod} attached questions to the University of Michigan's monthly Survey of Consumer Attitudes and Behavior that solicited respondents' uses of these rebated funds as well as their expectations about future government spending and taxes. They found that $22$ percent of respondents reported spending most of the rebate, while the rest said they would either reduce their debts or increase their savings. We follow their thinking of the time horizon for this adjustment as one year.\footnote{\citet*[page 383]{aer2003ShapiroSlemrod}. Given that the main question includes \textquotedblleft Thinking about your financial situation this year, will the tax rebate lead you mostly to...\textquotedblright, the time frame may be thought of as one year.}
+
+One theoretical justification for large MPCs out of tax rebates is that households cannot borrow against higher expected future income to smooth consumption. Such traditional liquidity constraints should be most prevalent among households with low wealth. \citeauthor{aer2003ShapiroSlemrod} tabulated the reported propensities to mostly spend across different households based on their ownership of stocks, either in retirement accounts, mutual funds, or brokerage accounts. They found that the spending fraction \emph{increases} with stock ownership, with exceptions for the highest bracket and that with zero assets.\footnote{See the lines under ``Stock'' in their Table 2.  \citeauthor*{aer2003ShapiroSlemrod} report in their original working paper that this pattern also arises in regressions with dummy variables for the different stock ownership brackets, while age and other control variables are included. However, the relationship is statistically indistinguishable from a flat line. See Tables 10 through 13 of NBER Working Paper 8672.}
+
+\cite{aer2009ShapiroSlemrod} used the same survey instrument and methodology to measure households' propensities to spend the obviously temporary Economic Stimulus Payments (ESPs) of 2008. It turned out that the fraction of respondents who report mostly spending their ESPs is nearly identical to that from the 2001 rebate checks, $20$ percent. \citet*{taxPolicy2010SahmShapiroSlemrod} found a dependence of the Mostly-Spend rate on the household's wealth in stocks similar to that from the 2001 tax rebates. Table \ref{spendingPercentages} presents the Mostly-Spend percentages by stock ownership level from both \cite{aer2003ShapiroSlemrod} and \citet*{taxPolicy2010SahmShapiroSlemrod}. 
+It clearly shows that substantial fractions of both low-wealth and high-wealth households reported mostly spending their 2001 tax rebates and 2008 ESPs.
+
+The data for all these studies come from the Michigan Survey of Consumers. \cite{nber2017ParkerSouleles} performed similar surveys with supplementary questions attached to the Consumer Expenditure Survey (CEX) and the Nielson Consumer Panel (NCP), and found similar results for the 2008 ESPs. They divided the CEX respondents by liquid assets using a threshold of \$2,000, and found that 29 percent of those with low liquid assets reported mostly spending their ESPs, while for those with high liquid assets the corresponding percentage is 37. For the NCP, the liquid assets threshold was two months of income, and the percentages of those reporting spending most of the rebate were 17 for those below the threshold and 21 for those above. 
+
+\cite*{nber2017ParkerSouleles} label the consumption responses to survey questions \emph{reported preference} estimates.  In their taxonomy, more traditional econometric estimates which use plausibly exogenous variation in tax rebates to identify consumption responses from expenditure data are \emph{revealed preference} estimates. 
+
+Revealed preference estimates measure households' responses to the \emph{receipt} of tax rebates, so \cite{ecta2014KaplanViolante} labeled such estimates \emph{rebate coefficients}. The MPC equals the rebate coefficient summed with any consumption response between the \emph{announcement} and the receipt of funds.  In our theoretical analysis, we address the MPC as a whole, i.e., we deal with case of the announcement and the actual receipt occurring during the same time period---which we define as a year. 
+
+\begin{table}[tbp] \centering
+
+\begin{tabular}
+[c]{lcccc}
+\multicolumn{1}{c}{} & \multicolumn{2}{c}{2001 Tax Rebates} & \multicolumn{2}{c}{2008 Economic Stimulus Payments} \\ 
+\multicolumn{1}{c}{} & Percentage& Percentage Spending & Percentage & Percentage Spending\\
+Stock Ownership Class & of Sample & Most of Rebate & of Sample & Most of Rebate \\\hline
+None & $\makebox[0pt][r]{4}2.8$ & $19.5$ & $\makebox[0pt][r]{3}3$ & $20$ \\
+$\$1-\$15,000$ & $9.1$ & $13.1$ & $\makebox[0pt][r]{1}3$ & $19$ \\
+$\$15,001-\$50,000$ & $9.9$ & $18.1$ & $\makebox[0pt][r]{1}4$ & $19$ \\
+$\$50,001-\$100,000$ & $6.8$ & $26.7$ & $\makebox[0pt][r]{1}0$ & $14$ \\
+$\$100,001-\$250,000$ & $6.2$ & $33.6$ & $\makebox[0pt][r]{1}1$ & $25$ \\
+More than $\$250,000$ & $5.1$ & $22.9$ & $9$ & $39$ \\ 
+Refused/Don't Know & $\makebox[0pt][r]{2}0.1$ & $25.3$ & \makebox[0pt][r]{1}1 & 25 \\
+
+\end{tabular}
+
+\caption{Rebate Spending Percentages \label{spendingPercentages}}
+
+\bigskip
+
+\flushleft{\footnotesize Source: Table 2 of \citet*{aer2003ShapiroSlemrod} and Table 8 of \citet*{taxPolicy2010SahmShapiroSlemrod}}
+
+\end{table}
+
+\cite{aer1999Souleles} estimated rebate coefficients using individual income tax refunds using CEX data. The author split the sample into low and high wealth households based on the ratio of liquid wealth to earnings. He found that both food purchases and \cites{jbes1996Lusardi} strictly nondurable consumption respond substantially to tax rebates only for households with low wealth to earnings ratios.  However, the measured response of total consumption is only economically and statistically significant for households with high wealth to earnings.\footnote{See his Table 4.}  Those results imply a substantial response of high-wealth households' purchases of durable goods to their tax rebates.\footnote{In a related paper, \cite{aer1999Parker} examined consumption responses to predictable changes in Social Security tax withholding using CEX data---which are in principle similar to rebate coefficients. His identification combined variation across households hitting the Social Security tax cap at different times with variation across time from statutory tax rate changes. He used financial asset data in the CEX to divide his sample into ``Low asset ratio'' and ``High asset ratio'' groups.  He concluded that ``There is little evidence that the Euler equation failure is concentrated among households with the fewest assets.'' (Page 968). }
+
+\cite{jpube2002Souleles} provided a perspective on rebate coefficients from persistent tax changes with evidence from the Reagan tax cuts of the early 1980s. These were implemented in three stages, the last two of which were well after their announcement. He estimated responses of nondurable consumption to the tax cuts of 80 to 90 cents per dollar using CEX data.\footnote{See the row labelled ``$d(\textit{withholding})_{t+1}$'' in his Table 2.} When he split the sample by liquid wealth relative to earnings, the consumption responses of households in the bottom quartile  were within 15 cents of their counterparts in the top three quartiles. Furthermore, these differences were statistically insignificant.\footnote{See the first two rows of his Table 4.} 
+
+In a pair of articles, \citet*{aer2006JohnsonParkerSouleles} and \citet*{aer2013ParkerSoulelesJohnsonMcClelland} estimated monthly rebate coefficients from the 2001 and 2008 tax experiments using questions appended to the CEX that asked when the household received the disbursed funds. The Treasury randomized this timing based on the last two digits of the recipient's Social Security number, so the effect of \emph{receiving} the funds on current consumption can be estimated without substantial endogeneity concerns.  
+
+Studying the 2001 tax cut, \citeauthor*{aer2006JohnsonParkerSouleles} aggregated their monthly estimates into a one-quarter rebate coefficient for nondurable consumption of $0.462$ with a standard error of $0.173$.\footnote{See the first row and final column of their Table 3.} They sorted their sample into three groups by liquid assets. Households in their low-assets group spent much more than those in the middle-assets group, but those with the highest level of assets also spent more than those in the middle.\footnote{See their Table 5.}  For the 2008 ESPs, \citeauthor*{aer2013ParkerSoulelesJohnsonMcClelland} measured quarterly rebate coefficients for nondurable goods and all consumption of $0.128$ and $0.523$. Only the latter is statistically significant.\footnote{See the third row of their Table 2.} When they sorted their sample by liquid assets, the resulting rebate coefficients were statistically indistinguishable from each other.\footnote{See their Table 6.} We conclude that the CEX-based estimates of rebate coefficients greatly exceed the predictions of the PIH for MPCs and are weakly related to households' liquid assets. 
+
+In a complementary analysis,  \cite{jme2014BrodaParker} estimated rebate coefficients for the 2008 ESPs using weekly household expenditure data from the NCP augmented with survey data on the timing of the ESPs receipt and available household liquidity. NCP participants use barcode scanners and purchase receipts to report their spending on consumer package goods at a daily frequency. As the authors note, the data cover only a small portion of personal consumption expenditures, mostly those goods that retailers track using UPC codes. The NCP data's focus on consumer package goods means that these estimates do not embody expenditures on infrequently purchased items. Nevertheless, the data reveal a statistically-significant response of these expenditures to ESP receipt. The estimated MPC for spending during the four weeks following ESP receipt is between 3 and 4 percent. Using three distinct methodologies to extrapolate from spending on consumer packaged goods to all personal consumption expenditures, the authors estimate MPCs from $0.40$ to $0.65$.\footnote{See the first lines of their Table 5's Panels A and B.}  The paper's penultimate section estimates MPCs separately for ``low'' and ``sufficient'' liquid wealth households.  \citeauthor*{jme2014BrodaParker} found that both low-wealth and sufficient-wealth households display statistically significant responses in the month of receipt. 
+
+Overall, both high-wealth and low-wealth households have large rebate coefficients. Since high-wealth households do not \emph{need} to borrow in order to smooth consumption between a tax rebate's announcement and its implementation, we interpret these estimates as consistent with some inattention to fiscal policy announcements.  That is, the relevant timing of the policy change, from the household's perspective, is the moment of the tax rebate's receipt; and the measured rebate coefficient \emph{equals} the relevant MPC. 
+
+One potential explanation for high MPCs among middle-class households with liquid wealth is that their consumption and saving decisions are \emph{nearly} rational. \cite{qje2018Kueng} provides evidence for this view from the spending of annual Alaska Permanent Fund Dividends. He found statistically and economically significant MPCs for all households across the income distribution, but those for highest income quintile were nearly five times larger than those in the lowest income quintile, $0.57$ versus $0.12$.\footnote{See \cites{qje2018Kueng} Table 4. Interestingly, this table also indicates that these MPCs are invariant to liquid wealth and cash on hand.} He writes,
+\begin{quote}
+The intuition is simple: Lower-income households, for whom it is ex-ante costly to deviate from consumption smoothing because the dividend is a large fraction of their income, indeed smooth the dividend more. High-income households, on the other hand, who deviate substantially from consumption smoothing suffer only small losses from this excess sensitivity.
+\end{quote}
+Although behavioral economics clearly can contribute to understanding households' MPCs, we believe that a baseline explanation for the relationship between MPCs and liquid wealth based on optimizing behavior can be equally enlightening.
+
+\subsection{Term Saving and Precautionary Saving}
+
+We put forward an explanation for high MPCs among wealthy middle-class households that relies on saving to finance foreseen large expenditures. Before proceeding with its theoretical development, we present here evidence on the importance of such expenditures for the savings decisions of middle-class households. The principle expenses we have in mind are purchases of new homes and the college education of children. 
+
+\subsubsection{The Sample}
+
+For our sample, we draw on five cross-sectional waves of the SCF; 1995, 1998, 2001, 2004, and 2007. Unfortunately, the more recent 2010, 2013 and 2016 SCF waves omit a key variable, the household's Adjusted Gross Income, that we use to measure its federal income tax paid. 
+
+The SCFs' sample weights give the number of U.S. households that each household in the sample represents. The first row of Table \ref{scfsample} uses these weights to list the number of households represented in each of the five waves. This ranges from 99 million in 1995 to 116.1 million in 2007.  We wish to focus the analysis on working-age middle-class households. To be included in our sample, a household must have answered all of the questions regarding saving motives that we use below. Table \ref{scfsample}'s second line gives the number of represented households after dropping those that fail this screen. The total number of households lost varies between 2 and 3 million. Next, the household head must be between 25 and 64 years old at the survey date. This requirement removes approximately 25 percent of the households. 
+
+The next two criteria remove the poor from our sample. The first requires the household to have not received Supplemental Nutrition Assistance Program payments in the previous year, and the second requires the household's after-tax labor income to exceed the official poverty line for a household of that demographic composition.  We compute after-tax labor income as pre-tax labor income less income and social insurance taxes as well as IRA contributions.\footnote{More specifically, to compute the household's after-tax labor income we calculated an average tax rate using the household's Adjusted Gross Income, the household's federal tax filing status, and the federal income tax and social-insurance (FICA and Medicare) tax tables. The resulting tax is subtracted from pre-tax labor income of the household's head and his or her spouse. The SCF includes no information on state of residence, so we make no attempt to estimate state income taxes. We assume that each worker with an IRA account that is eligible to contribute to it makes the maximum possible contribution.}   We elaborate on our treatment of IRA contributions below in Footnote \ref{retirementSavings}.  Table \ref{scfsample}'s fourth and fifth rows list the number of households that these two poverty criteria retain. Together, they remove between 20 and 25 percent of the remaining represented households from our sample.
+
+Next, we remove the wealthiest households, as measured with their liquid assets; balances in checking, saving, money market and mutual fund accounts, bonds and stocks. The exclusion of balances in IRA accounts from the financial wealth measure is consistent with our treatment of tax-advantaged retirement saving in the measurement of after-tax labor income. We remove from our sample the households  in the top five percent of all households represented in that wave of the SCF. 
+
+Our final sample-selection criterion removes households in which either the household head or spouse reports being self-employed. This ensures that savings for business purposes do not substantially influence our results, and it removes between 10 and 15 percent of the remaining households. Our final sample represents 43.1 million households in 1995 and 53.1 million households in 2007. The bottom panel of Table \ref{scfsample} repeats the procedure which generated the top panel, but it reports the number of distinct records in the data. Our final samples retain about $1/3$ of the available data, which yields between 1400 and 1600 records for each of the SCF waves.
+
+\begin{table} \begin{center}
+
+\begin{tabular}[c]{l*{5}{r}}
+ & \multicolumn{5}{c}{SCF Wave} \\
+ & 1995 & 1998 & 2001 & 2004 & 2007\\ \hline
+%\input{../../../scfData/scfSample}
+Households$^{\textrm{(i)}}$&99.0&102.5&106.5&112.1&116.1\\
+\hspace{20pt}  without imputed variables,&97.0&100.3&103.5&109.9&114.5\\
+ \hspace{20pt} \& with $25\leq\textrm{age}\leq 64$,&71.3&74.4&76.3&80.4&84.9\\
+ \hspace{20pt} \& that received no SNAP,&63.9&68.8&71.7&74.3&76.5\\
+ \hspace{20pt} \& with income $>$ poverty line,&54.2&59.2&61.5&62.5&64.3\\
+ \hspace{20pt} \& with wealth $<$ 95th percentile, and&49.9&54.3&57.0&57.9&60.2\\
+ \hspace{20pt} \& are not self-employed.&43.1&46.9&48.8&49.1&53.1\\
+\\
+%\input{../../../scfData/scfRecords}
+Records$^{\textrm{(ii)}}$&4299&4305&4442&4519&4417\\
+\hspace{20pt}  without imputed variables,&4212&4212&4322&4420&4351\\
+ \hspace{20pt} \& with $25\leq\textrm{age}\leq 64$,&3120&3154&3277&3388&3268\\
+ \hspace{20pt} \& that received no SNAP,&2889&2969&3121&3180&3024\\
+ \hspace{20pt} \& with income $>$ poverty line,&2410&2487&2596&2614&2487\\
+ \hspace{20pt} \& with wealth $<$ 95th percentile, and&1838&1879&1992&1990&1895\\
+ \hspace{20pt} \& are not self-employed.&1441&1457&1571&1557&1562\\
+\end{tabular}
+\medskip
+\caption{Household Representation and Record Counts in the Surveys of Consumer Finances \label{scfsample}}
+\end{center}
+\vspace{-1cm}
+\noindent \footnotesize
+(i) Households, measured in millions, sum the SCF sample weights. (ii) Records equals the number of distinct observations in the data set. 
+\normalsize
+\end{table}
+
+To present the financial wealth distribution in our sample, Table \ref{wealthRatioTable} reports summary statistics of financial wealth scaled by after-tax labor income for each SCF cross section. The second column gives the income-weighted average of the wealth to labor income ratio, and the remaining columns give this income-weighted average for each decile of the ratio. In 1995, the overall average equals 30.8 percent. This climbs quickly to 47.6 percent in 1998 and 50.4 percent in 2001. For 2004 and 2007, the overall averages are substantially lower, 43.7 percent and 46.1 percent.\footnote{Since the rise and fall of this ratio coincides with the growth and decline of the internet stock boom, we calculated the same ratios excluding directly-held stocks and stock-based mutual funds from financial wealth. The results (unreported here) confirm that excluding equities smooths this ratio's evolution.}  Even though the sample focuses on middle-class households, the distribution of the ratio is quite skewed. The average ratio for households in the fifth decile is between 9.2 and 13.1 percent. The analogous averages for households in the tenth decile range from 171.6 percent to 263.8 percent. 
+
+\begin{table} \begin{center}
+
+\begin{tabular}[c]{lrrrrrrrrrrr}
+& \multicolumn{1}{c}{Full} &\multicolumn{10}{c}{Deciles}\\
+\multicolumn{1}{c}{Year} &\multicolumn{1}{c}{Sample} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{3} & \multicolumn{1}{c}{4} & \multicolumn{1}{c}{5} & \multicolumn{1}{c}{6} & \multicolumn{1}{c}{7} & \multicolumn{1}{c}{8} & \multicolumn{1}{c}{9} & \multicolumn{1}{c}{10} \\  \hline
+\\ 
+%\input{../../../scfdata/wealthRatioTable} \\
+1995&30.8&0.1&1.5&3.6&6.2&9.2&13.4&22.4&37.1&71.1&171.6\\
+1998&47.6&0.3&2.1&4.6&8.0&13.1&20.4&32.3&54.7&100.5&247.7\\
+2001&50.4&0.4&2.3&4.9&8.1&13.0&21.0&32.2&54.3&100.6&263.8\\
+2004&43.7&0.1&1.5&3.6&6.2&10.3&16.0&25.4&42.4&85.5&214.9\\
+2007&46.1&0.3&1.7&3.7&6.5&10.3&16.4&26.0&44.2&84.2&220.8\\
+
+\end{tabular}
+\bigskip
+
+\caption{Ratios of Financial Assets to Annual After-Tax Labor Income ($\times 100$)\label{wealthRatioTable}}
+
+\bigskip
+
+\footnotesize
+\begin{minipage}[c]{5.5in}
+\noindent Note: Each cell reports a weighted average of non retirement financial assets to labor income net of federal income taxes, Social Security taxes, and contributions to tax-advantaged retirement accounts. The weights are proportional to this after-tax income measure. The second column uses the entire sample, while the remaining columns use observations grouped by deciles of this ratio. Financial wealth equals  the sum of checking accounts, savings accounts, money-market deposit accounts, money-market mutual fund accounts, certificates of deposit, non-money-market mutual fund accounts, savings bonds, brokerage call accounts, directly-held bonds, and directly-held stocks.
+\normalsize
+\end{minipage}
+\end{center}
+\end{table}
+
+\subsubsection{Reasons for Saving}
+
+We begin exploring the quantitative importance of term saving by examining households' answers to the following question:
+
+\begin{question} 
+\label{question:SavingsMotives}
+Now I'd like to ask you a few questions about your family's savings. People have different reasons for saving, even though they may not be saving all the time. What are your family's most important reasons for saving?
+\end{question}
+
+\noindent Each respondent could give up to six answers (five in 1995) from a detailed list, which we broke into three classes, Retirement and Estate, Precaution and Anticipated Expenditure. Both Retirement and Estate had distinct entries on the list of answers, although the Estate answer included inter vivos transfers. Following \cite{nber2004LusardiKennickell}, we assigned an answer to Precaution if it was
+\begin{itemize}
+\item Reserves in case of unemployment,
+\item In case of illness; medical/dental expenses,
+\item Emergencies; ``rainy days'';
+other unexpected needs; For ``security'' and independence, or
+\item Liquidity; to have cash available/on hand.
+\end{itemize}
+
+\noindent The answers we used to infer an Anticipated Expenditure motive were:
+\begin{itemize}
+\item Children's education; education of grandchildren,
+\item Own education; spouse's education; education -- NA for whom,
+\item Wedding, Bar Mitzvah, and other ceremonies, 
+\item Buying own house,
+\item Purchase of cottage or second home for own use, 
+\item Buy a car, boat or other vehicle,
+\item To travel; take vacations; take other time off, or
+\item Burial/funeral expenses.
+\end{itemize}
+
+Table \ref{whySave} reports the frequencies of saving for each listed motivation and for the three classes we define. Because a given household can give multiple answers, these frequencies sum to more than 100 percent.  In every year but 1995, Retirement and Estate is the most common of these three classes of motivations with frequencies of about 60 percent. Again with the exception of 1995, between 33.0 and 36.3 percent of households reported Precautionary motives, while between 38.6 and 42.7 percent reported motivation from an Anticipated Expenditure.  Overall, the data indicate that saving for an anticipated expenditure is widespread and at least as salient for middle-class SCF respondents as precautionary saving.
+
+\begin{table}[t]
+\begin{center}
+%\input{../../../scfData/whysave}
+\begin{tabular}{l*{ 5}{c}}
+  & 1995 & 1998 & 2001 & 2004 & 2007\\ \hline
+Retirement \& Estate&\makebox[0pt][r]{4}3.7&\makebox[0pt][r]{6}0.1&\makebox[0pt][r]{5}5.8&\makebox[0pt][r]{5}8.2&\makebox[0pt][r]{6}3.2\\
+\hspace{20pt} Retirement&\makebox[0pt][r]{4}1.4&\makebox[0pt][r]{5}6.7&\makebox[0pt][r]{5}1.8&\makebox[0pt][r]{5}4.8&\makebox[0pt][r]{5}9.1\\
+\hspace{20pt} Estate&3.5&5.0&6.5&5.7&7.1\\
+\\ Precaution&\makebox[0pt][r]{4}5.0&\makebox[0pt][r]{3}3.0&\makebox[0pt][r]{3}3.5&\makebox[0pt][r]{3}3.9&\makebox[0pt][r]{3}6.3\\
+\hspace{20pt} Unemployment&3.0&3.3&2.7&3.1&3.7\\
+\hspace{20pt} Illness&4.6&3.4&4.2&3.1&4.5\\
+\hspace{20pt} Emergencies&\makebox[0pt][r]{3}8.3&\makebox[0pt][r]{2}8.2&\makebox[0pt][r]{2}7.9&\makebox[0pt][r]{2}9.9&\makebox[0pt][r]{3}1.3\\
+\hspace{20pt} Liquidity&2.0&1.4&2.0&0.5&0.7\\
+\\ Anticipated Expenditure&\makebox[0pt][r]{4}3.7&\makebox[0pt][r]{4}2.7&\makebox[0pt][r]{4}1.6&\makebox[0pt][r]{4}2.3&\makebox[0pt][r]{3}8.6\\
+\hspace{20pt}Childrens' Education&\makebox[0pt][r]{1}3.7&\makebox[0pt][r]{1}6.0&\makebox[0pt][r]{1}5.4&\makebox[0pt][r]{1}8.0&\makebox[0pt][r]{1}7.0\\
+\hspace{20pt}Own Education&9.9&\makebox[0pt][r]{1}1.1&\makebox[0pt][r]{1}0.7&8.8&6.2\\
+\hspace{20pt}Bar Mitzvah and other Ceremonies&0.5&0.2&0.6&0.8&0.7\\
+\hspace{20pt}First Home&\makebox[0pt][r]{1}0.3&9.5&9.6&9.3&7.7\\
+\hspace{20pt}Second Home&0.4&0.2&0.3&0.6&0.9\\
+\hspace{20pt}Automobile&3.1&3.3&2.7&2.3&1.6\\
+\hspace{20pt}Travel&\makebox[0pt][r]{1}4.1&\makebox[0pt][r]{1}1.6&\makebox[0pt][r]{1}0.4&\makebox[0pt][r]{1}0.0&\makebox[0pt][r]{1}0.6\\
+\hspace{20pt}Funeral Expenses&0.2&0.1&0.1&0.3&0.5\\
+\end{tabular}
+\bigskip
+
+\caption{Percentage Frequencies of Stated Reasons for Saving from the SCF\label{whySave}}
+\end{center}
+
+\end{table}
+
+\subsubsection{A Closer Look at Term Saving}
+
+The SCF has an additional question on savings motives particularly relevant for term saving:
+
+\begin{question}
+\label{question:ForeseeableObligations}
+In the next five to ten years, are there any foreseeable major expenses that you and your family expect to have to pay for yourselves, such as educational expenses, purchase of a new home, health care costs, support for other family members, or anything else?
+\end{question}
+
+\noindent Note that this question explicitly references health care costs, which we counted above as a motive for precautionary savings. However, we can separate term saving for health care from other term saving using a follow-up question. 
+If the respondent answered Question \ref{question:ForeseeableObligations} affirmatively, then the interviewer asked 
+
+\begin{question}
+\label{question:KindsOfObligations}
+ What kinds of obligations are these? 
+\end{question} 
+The interviewer then showed the respondent a list of possible expenditures. Another follow-up question asked whether or not the household was currently saving for these expenses. A household that is not currently saving might either have not begun saving or have already completed saving. In 2007, the SCF questionnaire addressed this ambiguity by asking respondents if their saving was completed. 
+
+\begin{table}[t]
+\begin{center}
+%\input{../../../scfData/termSavingRates}
+\begin{tabular}{l*{ 5}{c}}
+  & 1995 & 1998 & 2001 & 2004 & 2007\\ \hline
+Foresees Expense&63.1&58.8&60.5&59.0&57.5\\
+Saving Now&38.1&37.1&36.8&35.8&33.9\\
+Saving Complete&  .&  .&  .&  .&1.6\\
+\end{tabular}
+\bigskip
+\caption{Percentage Frequencies of Saving for Anticipated Expenditure\label{termSavingRates}}
+\end{center}
+
+\end{table}
+
+Table \ref{termSavingRates} reports the frequencies with which respondents reported a foreseen expense, saving now for these expenses, and (for 2007) whether or not the saving was complete. In all of the waves, about 60 percent of households report an anticipated expense, and about 35 percent report that they are saving now. This is not far below the approximately 40 percent of households that claim an Anticipated Expenditure as one of possibly several savings motivations when answering Question \ref{question:SavingsMotives}.\footnote{One might wonder why about 60 percent of households report anticipated expenditures when responding to Question \ref{question:ForeseeableObligations} while only about 40 percent report such expenses as a motive for saving in their answers to Question \ref{question:SavingsMotives}. One reason might be that Question \ref{question:ForeseeableObligations} explicitly includes foreseen health costs. Another reason might be that the specific reference to ``the next five to ten years'' induces respondents to consider savings goals over a longer horizon.}  Only a very small fraction of households report that their saving for anticipated expenditures is complete. We have also tabulated the answers to these two savings questions by the wealth deciles used in Table \ref{wealthRatioTable}. The fraction of households reporting a foreseen expense is nearly constant across wealth deciles, while the fraction reporting that they are currently saving for the expense rises with wealth. Therefore, the data do not reject the possibility that term savings substantially influence the wealthiest middle-class households.
+
+As might be expected, the major expenses listed in Question \ref{question:ForeseeableObligations} -- education, purchase of a new home, and health care costs -- are concentrated at specific stages of the life cycle. Table \ref{table:ExpenditureFrequencyByAge} reports the frequencies with which households responded to Question \ref{question:KindsOfObligations} with that particular category and said that they were saving for their foreseen expense(s), both overall and by age of the household's head. (The denominators for these frequencies include \emph{all} households, not just those that answered Question \ref{question:ForeseeableObligations} affirmatively.\footnote{Because respondents can indicate more than one anticipated expense, and because Table \ref{table:ExpenditureFrequencyByAge} does not cover all possible anticipated expenses, there is no necessary relationship between the values in its first row and those in the second row of Table \ref{termSavingRates}.}) As expected, Table \ref{table:ExpenditureFrequencyByAge} shows that saving for a home purchase is concentrated among younger households, and saving for education expenses is concentrated among the middle aged. The frequency of saving for medical expenses is highest among those late in their working lives in the 2001, 2004, and 2007 SCF waves, but the age concentration for this term-saving motive is much less pronounced. Overall, however, Table \ref{table:ExpenditureFrequencyByAge} indicates a life-cycle pattern of anticipated major expenditures. 
+
+\begin{sidewaystable}
+\caption{Frequency of Saving for Major Foreseen Expenditures by Age Group\label{table:ExpenditureFrequencyByAge}}
+\bigskip
+\begin{center}
+%\input{../../../scfdata/expenditureFrequency}
+\begin{tabular}{l|*{ 5}{c}|*{ 5}{c}|*{ 5}{c}}
+ & \multicolumn{5}{c}{Home Purchase} & \multicolumn{5}{c}{Education} & \multicolumn{5}{c}{Medical Care}\\
+Age Category  & 1995 & 1998 & 2001 & 2004 & 2007 & 1995 & 1998 & 2001 & 2004 & 2007 & 1995 & 1998 & 2001 & 2004 & 2007\\ \hline
+\hspace{12pt}All&15.5&17.7&17.1&15.5&13.3&18.6&19.9&17.8&19.2&17.1&8.3&5.8&5.4&5.9&6.8\\
+\hspace{12pt}25-29&28.3&33.5&24.0&29.5&35.1&11.8&18.5&11.1&16.3&13.7&5.7&5.3&2.5&5.6&4.3\\
+\hspace{12pt}30-34&25.2&28.1&29.0&21.2&14.4&14.7&16.9&16.9&14.9&13.3&9.5&7.1&6.5&2.6&5.2\\
+\hspace{12pt}35-39&16.9&19.0&22.6&16.1&16.4&27.0&26.8&20.5&22.1&23.4&7.8&7.9&4.7&5.6&4.8\\
+\hspace{12pt}40-44&8.3&15.3&14.8&11.8&11.5&24.5&29.4&26.6&27.3&21.6&8.9&6.5&6.0&3.3&4.0\\
+\hspace{12pt}45-49&9.4&15.4&11.2&12.7&8.5&26.9&19.1&23.1&26.4&25.3&8.0&5.8&3.4&5.7&7.5\\
+\hspace{12pt}50-54&8.9&5.3&12.6&10.4&11.0&13.4&19.2&15.7&15.5&15.5&9.7&3.8&7.0&6.0&8.1\\
+\hspace{12pt}55-59&11.9&6.1&6.4&11.3&5.0&7.1&6.4&7.7&11.8&9.3&7.9&2.0&6.4&11.3&11.8\\
+\hspace{12pt}60-64&5.9&3.4&6.1&7.3&3.0&4.9&2.2&2.6&6.2&6.7&9.5&6.0&10.1&14.3&10.2\\
+\end{tabular}
+\end{center}
+
+\bigskip
+
+\noindent \footnotesize This table reports the frequency of saving for the three major foreseen expenses from the Surveys of Consumer Finances in 1995, 1998, 2001, 2004, and 2007. The first row reports the frequencies for all households, and the remaining rows report the frequencies for households in the indicated 5-year age bins. The denominators of these percentages include \emph{all} households, not just those who report a major foreseen expense.
+\normalsize
+\end{sidewaystable}
+
+\section{The Model\label{DeterministicModel}}
+\setcounter{theorem}{0}
+
+Inspired by the above evidence, our quantitative model of middle-class consumption and saving decisions introduces a term-saving motivation into a stochastic framework of an infinitely-lived dynastic household that is impatient relative to the market rate of interest and faces a borrowing constraint.  The precautionary motive arises from earnings uncertainty, and the term-saving motive comes from a periodic expenditure with predetermined timing but endogenous size. 
+
+Before proceeding, it is useful to view the model household within our vision of the economy as a whole. We conceive of the public as being composed of households with one of three rates of time preference, low, intermediate, and high. In the deterministic steady state, the interest rate equals the low rate of time preference. The other two groups endogenously become ``impatient'' since their rate of time preference is higher than the interest rate. Correspondingly, households with the low rate of time preference become the ``patient'' and the economy's wealthy. In this paper, we focus on households with the intermediate rate of time preference, which we describe as the middle class. Although they are impatient, they save for big and infrequent expenditures such as a house and college tuition. We do not include those with the high rate of time preference in the model---which are thought to be too impatient to save even for such goods. These individuals become the poor.\footnote{We carry out a general equilibrium analysis with two types of time preference (corresponding to the "low" and "intermediate" above) in \cite{jme2009CampbellHercowitz}.}
+
+\subsection{Primitives and Optimization\label{Basic Model}}
+
+To develop intuition for the new aspect of this model -- term saving -- we present here its deterministic version.  The model proceeds in discrete time, and we think of a point in time as a year. We assume that both the announcement and the actual rebate occur during the year, so we focus on the entire MPC. That is, we presume that any behavioral considerations which make the rebate coefficient differ from the MPC do not influence substantially consumption and saving decisions at an annual frequency. 
+
+The household values two goods, standard consumption and the special good. We denote the quantities of these consumed in year $t$ with $C_{t}$ and $M_{t}$. The utility function is
+\begin{equation}
+{\displaystyle\sum\limits_{t=0}^{\infty}}
+\beta^{t}\left( \ln C_{t}+\mu _{t}\ln
+M_{t}\right), 
+\label{basic_preferences}
+\end{equation}
+with $0<\beta<1$.\footnote{This is a special case of the more general utility function
+\[
+{\displaystyle\sum\limits_{t=0}^{\infty}}
+\beta^{t}\left( \frac{C_{t}^{1-\sigma}}{1-\sigma}+\left(\left(1+\mu_t\right)^{1/\sigma}-1\right)^\sigma\frac{ M_{t}^{1-\sigma}}{1-\sigma}\right), 
+\]
+with $\sigma>0$.  We chose the simpler logarithmic formulation ($\sigma=1$) given that the alternative values $\sigma=1/2$ and $\sigma=2$ produced very similar results to those reported below in Section \ref{quantitative}. } Here, $\mu_{t}=\mu>0$ every $\tau$ years and $\mu_{t}=0$ at other times. This specification generates a periodic expenditure with exogenous timing and endogenous size. Raising $\mu$ increases both the incentive to save for the special good and the fraction of available resources spent on this periodic expenditure every $\tau$'th year.\footnote{We interpret the utility from consuming $M_t$ as the discounted expected future benefits from this expenditure.}  The endogenous size generates a positively-sloped Engel curve for the special expenditure. This seems realistic for our two main examples, housing and college. The fixed timing is the simplest possible example of a hazard for the special expenditure that increases since its last occurrence. This seems to be a reasonable approximation for college education; but it is an admittedly stark representation of the link between household age and the purchase of a home. However, the model's simplicity allows us to stress saving for anticipated large expenditures over fine tuning the timing of these purchases.
+
+The household is endowed with one unit of labor which it supplies inelastically in return for income $Y_{t}.$ Denote lump-sum taxes with $T_{t}$ and net financial assets at the end of the previous year with $A_{t}.$ The household's budget constraint is
+\begin{equation}
+C_{t}+M_{t}=Y_{t}-T_{t}+RA_{t}-A_{t+1},\label{basic_budget constraint}
+\end{equation}
+where $R$ is the gross interest rate, assumed to be constant.\footnote{\label{retirementSavings}Our model omits one of the most prevalently cited savings motivations, retirement and estate. In the U.S., saving limited amounts towards retirement has tax advantages if the saver is willing to suffer penalties for withdrawal before a statutory retirement age. It is relatively straightforward to build such tax-advantaged retirement savings into the model if we abstract from earnings risk and assume that all households hit the statutory upper-bounds on retirement savings. That version of the model suggests that we measure income and wealth \emph{net} of retirement savings contributions and wealth \emph{net} of retirement balances as we did above. Including such savings vehicles in our model with earnings risk is much more challenging and lies beyond the scope of this paper.} Consistently with our focus on middle-class households, who are impatient, we assume that $\beta R<1$. The household's choices of all goods must satisfy nonnegativity constraints. Furthermore, the household faces the standard borrowing constraint
+\begin{equation}
+A_{t+1}\geq0.\label{basic_borrowing constraint}
+\end{equation}
+
+Given $A_{0},$ the household chooses sequences of $C_{t},$ $M_{t}$ and $A_{t+1}$ to maximize its utility subject to the sequences of budget and borrowing constraints. Denote the Lagrange multipliers on the year $t$ budget and borrowing constraints with $\Psi_{t}$ and $\Gamma_{t}$. The first-order conditions for optimization are
+\begin{eqnarray}
+\Psi_{t} & = & 1/C_{t},\label{basic_foc on C}\\
+\Gamma_{t}& = & \Psi_{t}-\beta R\Psi_{t+1},\label{basic_foc on A}\\
+\Psi_{t}M_{t}& = & \mu_{t}.\label{basic_foc on M}
+\end{eqnarray}
+\noindent Without borrowing constraints, $\Psi_{t}$ equals the marginal utility of lifetime resources. Here, it represents the marginal value of current resources. The multiplier $\Gamma_{t}$ equals the marginal value of relaxing the borrowing constraint, which is the deviation from the standard Euler equation; $\Gamma_{t}$ is zero when the borrowing constraint is slack. Because $\Psi_{t}$ is always positive, the periodic expenditure $M_{t}$ is positive when $\mu_{t}>0$ and zero otherwise.
+
+\subsection{The Ergodic Distribution of Wealth and the MPC\label{steady state}}
+
+Because of the periodic changes in preferences, the appropriate analogue of a steady state in this model is a deterministic cycle: $Y_t$ and $T_t$ are assumed to be constant, and all of the household's choices follow a pattern that repeats itself every $\tau$ years. If we assume that households are uniformly distributed over the cycle at any point in time, then we can calculate the cross sectional distribution of financial wealth and the MPC. The remainder of this section characterizes this ergodic distribution of wealth and the MPC analytically. These results serve as a foundation for understanding the next section's quantitative model which incorporates both term saving and precautionary saving.  
+
+Denote ordinary consumption and assets $\kappa$ years after the most recent purchase of the special good in a deterministic cycle with $C^{\kappa}$ and $A^{\kappa}$.\footnote{Our model has a deterministic asset cycle in common with the models of \cite{qje1952Baumol} and \cite{restat1956Tobin}. Those models differ in key respects from ours. There, the length of the cycle is the key endogenous variable, while here it is exogenous. We focus on the link between the asset cycle and liquidity constraints, while those models focused on the link between assets and money demand.} From (\ref{basic_foc on C}) and (\ref{basic_foc on A}), the necessary conditions which a deterministic cycle must satisfy are
+\begin{align}
+\frac{C^{\kappa+1}}{C^{\kappa}} &  \geq\beta R\text{ for }
+\kappa=1,2,\ldots,\tau-1,\text{ and }\label{deterministic Cycle FONC, Ordinary}\\
+\frac{C^1}{C^{\tau}} &  \geq\beta R.
+\label{deterministic Cycle FONC, Special}
+\end{align}
+The corresponding budget constraints are
+\begin{align*}
+C^{\kappa}+A^{\kappa+1} &  =Y-T+RA^{\kappa}\text{ for }\kappa=1,2,\ldots
+,\tau-1,\\
+\left(  1+\mu\right) C^{\tau}+A^{1} &  =Y-T+RA^{\tau}.
+\end{align*}
+This final form of the budget constraint replaces the periodic expenditure with its optimal level derived from (\ref{basic_foc on C}) and (\ref{basic_foc on M}), $\mu C^{\tau}$. With these conditions, we can characterize deterministic cycles with 
+\begin{proposition}\label{deterministic Cycle Characterization}
+There exists a unique deterministic cycle. In it
+\begin{enumerate}
+\item $C^1/C^\tau > \beta R$, and \label{deterministic cycle result 1}
+\item if $C^{\kappa+1}/C^\kappa > \beta R$ and $\kappa\geq 2$, then $C^\kappa/C^{\kappa-1}>\beta R$. \label{deterministic cycle result 2}
+\end{enumerate}
+\end{proposition}
+The appendix contains this proposition's short proof. Its first enumerated result says that the borrowing constraint binds in the cycle's final year, when the household consumes the special good. This fact is the analogue of the familiar result that an impatient household faces a binding borrowing constraint in a steady state. The second enumerated result says that if the borrowing constraint binds in some period before the special good is consumed, then it must bind in the previous period as well. Taken together, these results state that the periodic cycle always ends with the borrowing constraint binding while the household consumes the special good. Immediately afterwards, it might be binding for one or more years. \emph{If} it ceases to bind, then the household accumulates wealth until the next opportunity to consume the special good.\footnote{This household is occasionally constrained. Households that are \emph{always} constrained satisfy our definition of the poor, and our theoretical analysis does not consider their behavior.}
+
+\cite{mit1984Zeldes} noted that a binding borrowing constraint in the future works like a terminal condition which shortens the effective planning horizon.  If the borrowing constraint binds in the year of a temporary increase in after-tax income, then the MPC equals one as expected. If instead the borrowing constraint is slack then, the household allocates the increase in current income across consumption between the present year in the cycle, $\kappa<\tau$, and the next time the borrowing constraint binds. The resulting marginal propensity to consume (which can be easily calculated from the corresponding finite-horizon utility-maximization problem) is
+\[
+MPC^{\kappa }=\left( \frac{1-\beta ^{\tau -\kappa }}{1-\beta }+\beta ^{\tau
+-\kappa }(1+\mu )\right) ^{-1}.
+\]
+Whether or not this MPC is ``large'' relative to that we expect from the permanent income theory of consumption depends on the importance of the special good for consumption. Intuitively, $MPC^\kappa$ can be quite small if $\mu$ is so large that the household effectively only consumes the special good. To make this more precise, consider the marginal propensity to consume from the infinite-horizon utility-maximization problem with neither the special good, borrowing constraints nor impatience, $1-\beta$. This will be less than $MPC^\kappa$ if and only if
+\begin{equation}
+\label{upper bound on mu}
+1+\mu<\frac{1}{1-\beta }.
+\end{equation}
+Reasonable calibrations of the model in which ordinary consumption accounts for the majority of expenditures satisfy (\ref{upper bound on mu}) comfortably, so we hereafter assume that it holds good.
+
+\begin{figure}
+\begin{center}
+\pgfuseimage{nonstochasticCycle}
+\caption{The Calibrated Model's Deterministic Cycle\label{nonstochasticCycle}}
+\end{center}
+\end{figure}
+
+Figure \ref{nonstochasticCycle} plots the model's deterministic cycle using the calibrated parameter values reported below in Section \ref{quantitative}. In the year of the expenditure and for four years thereafter, the household chooses zero wealth, so its marginal propensity to consume in those years equals 100 percent. In the fifth year after the expenditure, saving begins and the marginal propensity to consume falls. The MPC and the beginning-of-year wealth increase together as the expenditure approaches. When the household consumes the special good, beginning-of-period wealth is at its maximum while the MPC equals 100 percent.\footnote{Since much of the expenditure during this period is on the special good, a survey like the NCP which measures only expenditures on frequently-purchased goods will underestimate the total MPC for such a household. Therefore, they will be biased towards finding a negative link between liquid wealth and the MPC.} 
+
+The model's borrowing constraint contributes to our results in two ways. First, it prevents the households' impatience from leading them into debt immiseration. Second, it induces them to finance a forthcoming special expenditure with saving.\footnote{\cite{jpub2000Souleles} provides evidence on the nondurable consumption of households with children in college in support of this prediction. He regresses consumption growth from the summer to the fall against college tuition. Since this expenditure is fully anticipated, the null hypothesis of saving in advance is that the coefficient multiplying tuition should be zero. A negative coefficient would indicate lack of planning. His main results indicate small coefficients which are in some specifications positive. \citeauthor{jpub2000Souleles} explains positive coefficients as possibly due to non-separability of college expenditures and nondurable consumption. Regardless of any such non-separability, it appears that households save in advance to finance forthcoming college expenditures.}
+It is worth considering how our results would change if households could borrow, but at a penalty rate $\bar{R}>\beta^{-1}$. Clearly, such a high rate is enough to keep households out of ever-increasing debt. The possibility of borrowing might lead households to finance some or all of the special expenditure with debt. However, the requirement that it be paid back along a deterministic cycle would merely shift the vehicle for wealth accumulation from financial assets to debt repayment. 
+
+\section{Quantitative Analysis\label{quantitative}}
+
+In this section, we investigate the quantitative contribution of term savings to middle-class households' MPCs using the full model with ongoing income risk. We calibrate its parameters and calculate the MPCs to transitory income changes and balanced-budget tax experiments. Our specification of income risk follows \cite{ecta2004MeghirPistaferri}. Using annual PSID observations, they estimated a stochastic process for household heads' log earnings that sums a random walk with a first-order moving average. The resulting process for $Y_t$ is
+\begin{eqnarray*}
+\ln Y_{t} &=&\ln Y_{t}^{P}+\ln Y_{t}^{T}\textrm{; with} \\
+\Delta \ln Y_{t}^{P} &\sim &N(0,0.177^{2}), \\
+\ln Y_{t}^{T} &=&\varepsilon _
+{t}+0.2566\varepsilon _{t-1}\textrm{, and} \\
+\varepsilon _{t} &\sim &N(0,0.173^{2}).
+\end{eqnarray*}
+Although they estimated several processes with heteroskedasticity, we focus on this homoskedastic process for the sake of simplicity. We assume that the household faces a four percent real rate of interest, so $R=1.04$. Motivated by the phrasing of Question \ref{question:ForeseeableObligations}, we set $\tau$ to 10. The remaining parameters to be determined are $\beta$ and $\mu$, which jointly govern the household's desired intertemporal allocation of consumption. We set these so that the median and 75th percentile of the distribution of liquid wealth (defined in Section 2 as including stocks) to current labor income in the model's ergodic distribution equal $0.14$ and $0.46$. These are the averages (across years) of the analogous medians and 75th percentiles calculated from the 1995, 1998, 2001, 2004, and 2007 waves of the SCF. Given the model's other parameters, this procedure selects $\beta=0.8967$ and $\mu=1.5859$.\footnote{In the calibrated model, the special good accounts for about 61 percent of total consumption expenditures in one of every ten years.}\textsuperscript{,}\footnote{\label{savingComplementarity}We checked whether the calibrated model displays \emph{saving complementarity} as defined by \citet*{wp2014BlundellEtheridgeStoker}. They addressed complementarity between saving for two types of risk, but their idea can be applied in general to different motives for saving. In the present context, saving complementarity prevails if the average assets held in the model with the two motives simultaneously are smaller than the sum of the average assets held with each motive in isolation. In our complete model, the average assets-to-labor income ratio is $0.28.$ With term saving only, as in Figure \ref{nonstochasticCycle}, the average assets-to-labor income ratio is $0.17$. With precautionary saving only---i.e., with $\mu=0$ and the same $\beta=0.8976$---the average ratio is $0.07.$ Hence, this model does not display saving complementarity but the opposite: In \citeauthor*{wp2014BlundellEtheridgeStoker}'s terminology, one motive \textquotedblleft amplifies\textquotedblright\ the other. Intuitively, it seems that term saving motives
+exacerbate consumption risk at and after the special expenditure.}
+
+To solve the model, we first create its stationary representation by dividing $C_t$, $M_t$, and $A_{t}$ by $Y_{t}^P$. Our solution of this stationary model uses standard discrete state space dynamic programming techniques. We constrain $A_{t+1}$ to $\{0,0.0001,0.0002,\ldots,1.3,1.3001,1.3002,\ldots,4\}$. We approximate $\ln Y_t^{T}$ with a nine-point Markov chain constructed from a three-point Gauss-Hermite approximation to a standard normal random variable. We use the same three-point approximation to model $\Delta \ln Y_t^P$.
+
+\begin{table}
+\begin{center}
+
+\begin{tabular}{rccccc}
+& \multicolumn{1}{c}{} & \multicolumn{4}{c}{Marginal Propensities to Consume out of a } \\ 
+
+Wealth$^{\textrm{(i)}}$ &$\begin{array}{c}
+\text{Ergodic} \\ \text{Frequency}\end{array}$
+ & $%
+\begin{array}{c}
+\text{One Year} \\ 
+\text{Transfer$^{\textrm{(ii)}}$}%
+\end{array}%
+$ & $%
+\begin{array}{c}
+\text{One Year} \\ 
+\text{Tax Cut$^{\textrm{(ii)}}$}%
+\end{array}%
+$ & $%
+\begin{array}{c}
+\text{Three Year} \\ 
+\text{Tax Cut$^{\textrm{(ii)}}$}%
+\end{array}%
+$ & $%
+\begin{array}{c}
+\text{Five Year} \\ 
+\text{Tax Cut$^{\textrm{(ii)}}$}%
+\end{array}%
+$ \\ \hline
+%\input{../../../compute/baselineCalibrationAllExperiments.tex}
+0 & \makebox[0pt][r]{3}0 & \makebox[0pt][r]{5}3 & \makebox[0pt][r]{5}1 & \makebox[0pt][r]{8}2 & \makebox[0pt][r]{9}3 \\
+(0,1] & \makebox[0pt][r]{1}5 & \makebox[0pt][r]{3}5 & \makebox[0pt][r]{3}2 & \makebox[0pt][r]{6}4 & \makebox[0pt][r]{8}6 \\
+(1,2] & 8 & \makebox[0pt][r]{2}6 & \makebox[0pt][r]{2}4 & \makebox[0pt][r]{5}9 & \makebox[0pt][r]{8}1 \\
+(2,3] & 8 & \makebox[0pt][r]{2}5 & \makebox[0pt][r]{2}2 & \makebox[0pt][r]{5}9 & \makebox[0pt][r]{7}9 \\
+(3,4] & 6 & \makebox[0pt][r]{2}4 & \makebox[0pt][r]{2}2 & \makebox[0pt][r]{5}9 & \makebox[0pt][r]{7}8 \\
+(4,5] & 5 & \makebox[0pt][r]{2}6 & \makebox[0pt][r]{2}4 & \makebox[0pt][r]{6}1 & \makebox[0pt][r]{7}5 \\
+(5,6] & 4 & \makebox[0pt][r]{3}1 & \makebox[0pt][r]{2}9 & \makebox[0pt][r]{6}4 & \makebox[0pt][r]{7}5 \\
+(6,7] & 4 & \makebox[0pt][r]{3}7 & \makebox[0pt][r]{3}6 & \makebox[0pt][r]{6}7 & \makebox[0pt][r]{7}5 \\
+(7,8] & 3 & \makebox[0pt][r]{4}6 & \makebox[0pt][r]{4}4 & \makebox[0pt][r]{7}1 & \makebox[0pt][r]{7}7 \\
+(8,9] & 3 & \makebox[0pt][r]{5}1 & \makebox[0pt][r]{5}0 & \makebox[0pt][r]{7}4 & \makebox[0pt][r]{7}9 \\
+(9,10] & 3 & \makebox[0pt][r]{5}8 & \makebox[0pt][r]{5}7 & \makebox[0pt][r]{7}8 & \makebox[0pt][r]{8}1 \\
+(10,11] & 2 & \makebox[0pt][r]{6}3 & \makebox[0pt][r]{6}2 & \makebox[0pt][r]{8}0 & \makebox[0pt][r]{8}3 \\
+(11,12] & 2 & \makebox[0pt][r]{6}6 & \makebox[0pt][r]{6}5 & \makebox[0pt][r]{8}2 & \makebox[0pt][r]{8}4 \\
+13 or more & 6 & \makebox[0pt][r]{7}2 & \makebox[0pt][r]{7}1 & \makebox[0pt][r]{8}8 & \makebox[0pt][r]{9}1 \\
+All Households & \makebox[0pt][r]{10}0 & \makebox[0pt][r]{4}2 & \makebox[0pt][r]{4}0 & \makebox[0pt][r]{7}1 & \makebox[0pt][r]{8}5 \\
+\end{tabular}
+
+\bigskip
+
+\caption{Average MPCs from the Calibrated Model\label{table:modelMPCs}}
+\end{center}
+\bigskip
+\noindent \footnotesize 
+(i) Households' assets at the beginning of the period are expressed in multiples of its monthly income.
+(ii) The ``Transfer'' experiment exogenously decreases $T$ for one year, after which it returns to its original value. Therefore, implementing this fiscal experiment would require the government to either raise taxes elsewhere or reduce government spending. The ``Tax Cut'' experiments exogenously decrease $T$ for the specified number of years but thereafter permanently increase it so that the fiscal intervention requires no outside funds.
+\normalsize
+
+
+\end{table}
+
+Table \ref{table:modelMPCs} reports results obtained from this calibrated model. To calculate these, we begin with the model's ergodic distribution for wealth and earnings (both scaled by earnings' permanent component). For each point in its discrete state space, we compute the households' responses to four changes in lump-sum transfers. In the first, each household receives a one-time transfer. This is \emph{not} a balanced-budget experiment, but the next experiment balances the budget with a lump-sum tax in all subsequent years equal to the interest cost of perpetually servicing the government debt used to fund the initial transfer. The next two experiments extend the initial tax cut to three and five years and increase the following permanent tax increase accordingly. Each row reports the MPCs in each experiment's \emph{first} year for the group of households with income to wealth ratios in 14 ranges. The first contains all households with exactly zero wealth ($30$ percent of the households), the second contains households with positive wealth that is less than one month of its current earnings, the third contains households with wealth greater than or equal to one month's earnings but less than two month's earnings, etc. The table's column labeled ``Frequency'' shows the distribution of households' wealth to income ratios. The calibration ensures that the median  value of assets to annual income is $0.14$ and the 75th percentile is 0.46. As mentioned in Footnote \ref{savingComplementarity}, Its mean equals $0.28$. 
+
+For the first experiment of a one-time transfer, the MPC of households with zero wealth at the beginning of the period equals 53 percent. Consistent with the intuition from a precautionary-saving model, 43 percent of these households are actually accumulating wealth and so have MPCs below 100 percent. The MPC declines to 35 percent for households with zero to one month of income in wealth, and then to 26 percent for households with wealth between one and two months' income. Thereafter, the MPC flattens out until it begins to rise for households with wealth between 5 and 6 months' earnings. For the 6 percent of households with wealth exceeding a full year of earnings, the MPC equals 72 percent. This pattern qualitatively resembles the positive link between stock ownership and the fraction of households which report that they "mostly spend" their 2001 and 2008 tax rebates as shown in Table \ref{spendingPercentages}.  Regarding the levels of the MPCs, the average across all model households equals 42 percent. In comparison,  \citet*{taxPolicy2010SahmShapiroSlemrod} calculate an average MPC of $33$ percent for the 2008 Economic Stimulus Payments, while \cite{nber2017ParkerSouleles} present an analogous average self-reported MPC from the NCP respondents of $69$ percent.\footnote{See Table 12 \citet*{taxPolicy2010SahmShapiroSlemrod} and Table 9 of \cite{nber2017ParkerSouleles}. } Therefore, this calibrated model's average MPC falls within the range of prior empirical estimates.\footnote{Our model does not formally address durable goods. These goods are often purchased using credit. In the spirit of our model, the MPC for these goods would be based on the household's out-of-pocket expenses in one year. These could include a downpayment, interest payments, and any repayment of principal. Conventional empirical measures of the MPC may include the entire purchase price. This consideration suggests that the MPC in the data could exceed that in the model. Dealing effectively with durable goods purchased with credit requires an extension of our model. We believe, however, that given the model's key building blocks -- impatience, a constraint on unsecured borrowing and a large periodic expenditure -- this modification would not alter the main feature of the present analysis.}
+
+The deterministic version of the model suggested that the long-run tax increase to balance the current tax cut should have a small effect on the present consumption response -- given the effective shortening of the planning horizon. The present, more quantitatively relevant, framework supports this prediction:  Permanently raising taxes to pay for the one-year tax cut reduces the MPCs very little. For those with no wealth, the MPC drops from 53 percent to 51 percent, and for those with wealth exceeding annual earnings it drops from 72 to 71 percent.  Extending the tax cuts to three and five years raises the MPCs. For a five-year tax cut, the average MPC of households without wealth equals 93 percent. For those with wealth exceeding annual earnings, it equals 91 percent.  
+
+The MPCs in Table \ref{table:modelMPCs} have a U-shaped pattern with the highest MPCs for the poorest and wealthiest of the middle class. Some of the evidence discussed in Section \ref{mpc estimates}, such as the ``Mostly Spend'' percentages reported in Table \ref{spendingPercentages}, displays such a shape, but their support is statistically weak. Indeed, we believe that measurement error in both wealth and income data makes our model's U-shaped wealth to MPC relationship difficult to test in practice. For this reason, our primary conclusion from Table \ref{table:modelMPCs} is that term saving breaks the precautionary-saving model's strong negative link between liquid wealth and the MPC and replaces it with something closer to what we observe in the data.\footnote{The special expenditure motivating term saving in our model has a fixed timing and and endogenous size. We fix the timing purely for the sake of parsimony. We speculate that if instead households could vary the expenditure's timing (potentially at some cost), then a fiscal transfer would either make earlier expenditure more desirable or more feasible. In either case, moving the expenditure towards the present should increase the MPC measured from current spending. Furthermore, it should increase the MPCs of those who shift their special expenditure to the current period by the most. By construction, these are the wealthiest households. Therefore, we do not expect endogenous timing of special expenditures to overturn our central result.
+
+The special expenditure's endogenous size allows us to gain additional simplification from homothetic preferences, but it also captures the reality that special expenditures for high-income households are likely to be more expensive than those of their low-income counterparts. For example, households can choose between private universities with high tuition and public universities with (state-subsidized) low tuition.  If instead the special expenditure had a fixed size, then the MPCs of saving households would be higher, because all of the additional funds will go to ordinary consumption. 
+}
+
+\begin{table}
+\begin{center}
+\begin{tabular}{rcccccccccc}
+&  \multicolumn{10}{c}{Years Until Next Special Purchase } \\ 
+Wealth$^{\textrm{(ii)}}$ & \makebox[18pt][c]{9} & \makebox[18pt][c]{8} & \makebox[18pt][c]{7} & \makebox[18pt][c]{6} & \makebox[18pt][c]{5} & \makebox[18pt][c]{4} & \makebox[18pt][c]{3} & \makebox[18pt][c]{2} & \makebox[18pt][c]{1} & \makebox[18pt][c]{0} \\
+ \\ \hline
+%\input{../../../compute/mpcsByWealthAndKappa.tex}
+0 & \makebox[0pt][r]{6}0 & \makebox[0pt][r]{5}9 & \makebox[0pt][r]{5}1 & \makebox[0pt][r]{5}2 & \makebox[0pt][r]{3}8 & \makebox[0pt][r]{3}4 & \makebox[0pt][r]{2}9 & \makebox[0pt][r]{2}6 &  &  \\
+(0,1] & \makebox[0pt][r]{4}8 & \makebox[0pt][r]{4}4 & \makebox[0pt][r]{4}6 & \makebox[0pt][r]{4}0 & \makebox[0pt][r]{3}4 & \makebox[0pt][r]{2}6 & \makebox[0pt][r]{2}3 & \makebox[0pt][r]{2}6 & \makebox[0pt][r]{3}1 &  \\
+(1,2] & \makebox[0pt][r]{4}4 & \makebox[0pt][r]{3}2 & \makebox[0pt][r]{2}9 & \makebox[0pt][r]{2}6 & \makebox[0pt][r]{2}6 & \makebox[0pt][r]{2}5 & \makebox[0pt][r]{2}3 & \makebox[0pt][r]{2}6 & \makebox[0pt][r]{3}1 & \makebox[0pt][r]{10}0 \\
+(2,3] & \makebox[0pt][r]{4}0 & \makebox[0pt][r]{3}1 & \makebox[0pt][r]{2}9 & \makebox[0pt][r]{2}3 & \makebox[0pt][r]{2}1 & \makebox[0pt][r]{2}1 & \makebox[0pt][r]{2}3 & \makebox[0pt][r]{2}6 & \makebox[0pt][r]{3}1 & \makebox[0pt][r]{10}0 \\
+(3,4] & \makebox[0pt][r]{3}5 & \makebox[0pt][r]{3}5 & \makebox[0pt][r]{2}5 & \makebox[0pt][r]{2}4 & \makebox[0pt][r]{2}0 & \makebox[0pt][r]{2}0 & \makebox[0pt][r]{2}3 & \makebox[0pt][r]{2}6 & \makebox[0pt][r]{3}1 & \makebox[0pt][r]{10}0 \\
+(4,5] & \makebox[0pt][r]{3}1 & \makebox[0pt][r]{2}3 & \makebox[0pt][r]{2}3 & \makebox[0pt][r]{2}2 & \makebox[0pt][r]{2}0 & \makebox[0pt][r]{2}0 & \makebox[0pt][r]{2}3 & \makebox[0pt][r]{2}6 & \makebox[0pt][r]{3}0 & \makebox[0pt][r]{10}0 \\
+(5,6] & \makebox[0pt][r]{2}8 & \makebox[0pt][r]{3}2 & \makebox[0pt][r]{2}1 & \makebox[0pt][r]{1}9 & \makebox[0pt][r]{1}9 & \makebox[0pt][r]{2}0 & \makebox[0pt][r]{2}2 & \makebox[0pt][r]{2}6 & \makebox[0pt][r]{3}0 & \makebox[0pt][r]{10}0 \\
+(6,7] & \makebox[0pt][r]{2}6 & \makebox[0pt][r]{2}5 & \makebox[0pt][r]{2}2 & \makebox[0pt][r]{1}9 & \makebox[0pt][r]{1}9 & \makebox[0pt][r]{2}0 & \makebox[0pt][r]{2}2 & \makebox[0pt][r]{2}5 & \makebox[0pt][r]{3}0 & \makebox[0pt][r]{10}0 \\
+(7,8] & \makebox[0pt][r]{2}5 & \makebox[0pt][r]{2}3 & \makebox[0pt][r]{2}0 & \makebox[0pt][r]{1}9 & \makebox[0pt][r]{1}9 & \makebox[0pt][r]{2}0 & \makebox[0pt][r]{2}2 & \makebox[0pt][r]{2}5 & \makebox[0pt][r]{3}0 & \makebox[0pt][r]{10}0 \\
+(8,9] & \makebox[0pt][r]{2}4 & \makebox[0pt][r]{2}2 & \makebox[0pt][r]{2}0 & \makebox[0pt][r]{1}8 & \makebox[0pt][r]{1}9 & \makebox[0pt][r]{2}0 & \makebox[0pt][r]{2}2 & \makebox[0pt][r]{2}5 & \makebox[0pt][r]{3}0 & \makebox[0pt][r]{10}0 \\
+(9,10] & \makebox[0pt][r]{2}3 & \makebox[0pt][r]{2}0 & \makebox[0pt][r]{1}9 & \makebox[0pt][r]{1}8 & \makebox[0pt][r]{1}9 & \makebox[0pt][r]{2}0 & \makebox[0pt][r]{2}2 & \makebox[0pt][r]{2}5 & \makebox[0pt][r]{3}0 & \makebox[0pt][r]{10}0 \\
+(10,11] & \makebox[0pt][r]{2}2 & \makebox[0pt][r]{1}9 & \makebox[0pt][r]{1}9 & \makebox[0pt][r]{1}8 & \makebox[0pt][r]{1}9 & \makebox[0pt][r]{2}0 & \makebox[0pt][r]{2}2 & \makebox[0pt][r]{2}5 & \makebox[0pt][r]{3}0 & \makebox[0pt][r]{10}0 \\
+(11,12] & \makebox[0pt][r]{2}1 & \makebox[0pt][r]{1}9 & \makebox[0pt][r]{1}8 & \makebox[0pt][r]{1}8 & \makebox[0pt][r]{1}9 & \makebox[0pt][r]{2}0 & \makebox[0pt][r]{2}2 & \makebox[0pt][r]{2}5 & \makebox[0pt][r]{3}0 & \makebox[0pt][r]{9}9 \\
+13 or more & \makebox[0pt][r]{1}9 & \makebox[0pt][r]{1}7 & \makebox[0pt][r]{1}7 & \makebox[0pt][r]{1}8 & \makebox[0pt][r]{1}9 & \makebox[0pt][r]{2}0 & \makebox[0pt][r]{2}2 & \makebox[0pt][r]{2}4 & \makebox[0pt][r]{2}9 & \makebox[0pt][r]{9}5 \\
+All Households & \makebox[0pt][r]{6}0 & \makebox[0pt][r]{5}2 & \makebox[0pt][r]{4}4 & \makebox[0pt][r]{3}8 & \makebox[0pt][r]{3}0 & \makebox[0pt][r]{2}4 & \makebox[0pt][r]{2}3 & \makebox[0pt][r]{2}6 & \makebox[0pt][r]{3}0 & \makebox[0pt][r]{9}8 \\
+
+\end{tabular}
+
+\bigskip
+
+\caption{MPCs from a One Year Transfer by Wealth and Years Until Next Special Purchase$^{\textrm{(i)}}$\label{table:mpcsByWealthAndKappa}}
+\end{center}
+\bigskip
+\noindent \footnotesize 
+(i) The MPCs in this table correspond to those in the third column of Table \ref{table:modelMPCs}. That is, the experiment exogenously decreases $T$ for one year, after which it returns to its original value.
+(ii) Each household's wealth is expressed in multiples of its monthly income.
+\normalsize
+\end{table}
+
+In Table \ref{table:modelMPCs}, the households have higher assets for two possible reasons:  They might have had income shocks which raise their wealth to income ratio (either by inducing saving or by lowering the denominator), or they might have less time until they make their special expenditure. Table \ref{table:mpcsByWealthAndKappa} disentangles these with a matrix counterpart to one of the columns of Table \ref{table:modelMPCs} -- the ``One Year Transfer.''  Each value gives the average MPC from that experiment for households with the given combination of wealth (specified by the row) and time remaining until the next special expenditure (specified by the column).\footnote{The households are heterogenous within each cell because the  categories of wealth to current labor income are intervals and because they have transitory income shocks. We use the model's ergodic distribution to calculate the averages. The table's three Northeast cells are empty because this distribution places zero probability on a household being in them.} \cites{ecta1996CarrollKimball} theorem requires our model's MPCs to decline with the ratio of wealth to labor income's permanent component \emph{holding all other state variables (in particular the time remaining until the next special expenditure) constant.} Each column of Table \ref{table:mpcsByWealthAndKappa} contains the empirically-feasible version of this experiment. Moving down each column we expect the MPCs to decline. The experiment is not ideal because it uses total income instead of its permanent component to scale wealth. Indeed, the theoretical imperfection of this empirically-feasible experiment is readily visible in Table \ref{table:mpcsByWealthAndKappa}. For example, the average MPCs for households with 8 years remaining until the next special expenditure does not always decline with the ratio of wealth to current labor income. Nevertheless, the overall pattern in Table 8 is one of declining MPCs with wealth conditional on time remaining until the next special expenditure. Thus, it appears that \cites{ecta1996CarrollKimball} prediction should hold empirically \emph{if} we can condition on the time remaining until large special expenditures like the purchase of a first house or the education of a child.
+
+Note that in the columns on the left of Table \ref{table:mpcsByWealthAndKappa}, the MPCs decline with wealth much more than do those on the right. This has a simple explanation. The last column at the right indicates that nearly all households are borrowing constrained in the period of the expenditure, so this period constitutes an effective end of the planning horizon. For households in the leftmost column, much time remains until the end of this planning horizon, so it is not very important for current decisions. This allows the \citeauthor{ecta1996CarrollKimball} predicted decline to be more pronounced. Moving to columns further to the right, two things change: The number of years with risky labor income declines (so precautionary motives become less important), and the end of the planning horizon approaches. Therefore, as we move to the right, the solution to the household's problem approaches that of the deterministic example in which each new dollar received is allocated between current and future consumption goods according to the ``expenditure shares'' in the homothetic utility function. For example, in the column for 1 year to the expenditure, the MPC become close to the deterministic division of the rebate among ordinary consumption for two years and the special consumption---regardless of the level of assets. This gives a second potentially testable prediction of the term-saving model if data on the time remaining until the next special expenditure becomes available: The decline of MPCs with wealth should be concentrated among households with much time remaining until the next special expenditure, and the MPCs of those who are about to undertake that expenditure should be approximately invariant to their wealth.\footnote{Moving across a row in Table \ref{table:mpcsByWealthAndKappa} compares households with the same beginning-of-period assets and different time remaining until the next special expenditure, so it does not test the correlation between liquid assets and MPCs. The U-shape of most of these rows can be explained as follows. Moving to the right across a row changes both the distance to the effective horizon and how much of the begining-of-period assets reflect previous luck. For example, at the extreme left of a row, households just made the previous special expenditure. Hence, positive assets should reflect recently high temporary income. Impatience leads these households to spend the assets down to zero, and their MPCs tend to be high. Moving to the right, the time since the previous special expenditure increases, and so assets on hand are more likely to have been accumulated deliberately for the next special expenditure. These households are saving, and their MPCs are lower than those who spend all they have, as in Figure \ref{nonstochasticCycle}. Moving further to the right, the MPC rises as the special expenditure becomes closer, again as in Figure \ref{nonstochasticCycle}.  These offsetting considerations lead to a U-shape of the MPC across a row of Table \ref{table:mpcsByWealthAndKappa}.}
+
+\section{Concluding Remarks\label{concluding remarks}}
+
+Evidence from the responses to tax rebates in the U.S. indicates that marginal propensities to consume are high (relative to the PIH benchmark) even for households with high liquid wealth. To address this puzzling observation, we have incorporated saving towards a large foreseen expense -- term saving -- into a standard precautionary-saving model. In a deterministic version of the model with term saving only, high wealth reflects an anticipated demand for liquidity rather than a liquidity surplus arising from past luck (as in the precautionary-saving model). In our quantitative model with earnings risk, the resulting high MPCs for high-liquid-wealth households are better aligned with the evidence.
+
+The principal lesson we take away from these results regards the pervasiveness of liquidity-constrained behavior across the middle class. Identifying ``liquidity constraints'' with violations of the standard Euler equation leads one to conclude that only a minority of households could be liquidity constrained. The standard precautionary-saving model reinforces this view, because it predicts that the MPC should sharply decline with wealth. However, the empirical pervasiveness of term-saving motives, the relatively high MPCs of households with liquid assets, and the success of the term-saving model at replicating the wealth-MPC relationship lead us to believe that \emph{anticipated} liquidity constraints are salient for most middle-class households' consumption and savings choices.
+
+The SCF data indicates that term-saving motives are at least as widespread among the U.S. middle class as is precautionary saving. However, further examination of term saving requires data that are not yet available in any household survey. In particular, adding information on the expected cost of a large anticipated expenditure and its expected timing to data sets which already measure household wealth would allow direct tests of the term-saving mechanism: Do households' assets increase with the proximity of a large expenditure? Holding a household's income constant, are its assets positively affected by the cost of the foreseen expenditure? Measures of the MPC or answers to the \cite{aer2003ShapiroSlemrod} ``Mostly Spend'' question (either associated with a future economic stimulus payment or with a purely hypothetical payment) would also enable testing whether the MPC increases with the proximity of a large anticipated expenditure. Additionally, these data would allow construction of an empirical analogue to our Table \ref{table:mpcsByWealthAndKappa}. Adding such questions to the SCF, the Michigan Survey of Consumers, or another similar instrument seems feasible at a reasonable cost. The resulting benefit would be direct evidence of how liquidity constraints, both current and foreseen, influence middle-class households' responses to fiscal interventions.
+
+\newpage
+\appendix
+
+\section{Proofs for Section \ref{steady state}}
+\begin{lemma}\label{constraint binding lemma}
+The borrowing constraint must bind at least once in any deterministic cycle.
+\end{lemma}
+\begin{proof}
+Suppose otherwise. Then from (\ref{deterministic Cycle FONC, Ordinary}) and (\ref{deterministic Cycle FONC, Special}), we can conclude that
+\[\frac{C^2}{C^1}\frac{C^3}{C^2}\cdots\frac{C^{\tau}}{C^{\tau-1}}\frac{C^1}{C^\tau} = (\beta R)^\tau. \]
+But this is impossible, because the left-hand side equals one while the right hand side is strictly less than one. 
+\end{proof}
+
+\begin{lemma} \label{constraint timing lemma}
+Suppose that the borrowing constraint is slack in one year of a deterministic cycle. Then either the borrowing constraint is slack in the cycle's next year or the cycle's next year is $\tau$.
+\end{lemma}
+\begin{proof}
+Let $\kappa$ denote a year in which the borrowing constraint is currently slack but which is followed by a year in which it binds. By construction, $\kappa$ caps a spell of years over which the borrowing constraint has been slack. Denote the number of years in this spell with $j$.  By definition, beginning-of-period wealth in the first year of such a spell is zero. Therefore, consumption in that year cannot exceed $Y-T$. Since the borrowing constraint is slack throughout the entire spell, this in turn bounds ordinary consumption in year $\kappa$ from above with $(Y-T)(\beta R)^j<(Y-T) $. However, \emph{total} consumption expenditures in that year must weakly exceed $Y-T$, because the borrowing constraint binds in that year (by assumption) and so consumption expenditures must equal total earnings summed with any accumulated wealth. If $\kappa\neq \tau-1$, then this is impossible because total consumption expenditures equals ordinary consumption expenditures in year $\kappa+1$. Therefore, $\kappa=\tau-1$. 
+\end{proof}
+
+\bigskip
+
+\begin{proof}[Proof of Proposition \ref{deterministic Cycle Characterization}]
+Lemmas \ref{constraint binding lemma} and \ref{constraint timing lemma} together imply that the borrowing constraint binds in the final year ($\tau$) of a deterministic cycle. Therefore, a deterministic cycle corresponds to a solution of the finite-horizon utility maximization problem that starts in period $1$ with zero assets and ends in period $\tau$ with the household consuming all available resources. Since this problem maximizes a strictly concave objective over a convex constraint set, it has a unique solution. This guarantees existence and uniqueness of a deterministic cycle. With this established, applying Lemmas \ref{constraint binding lemma} and \ref{constraint timing lemma} again yield the proposition's first numbered conclusion, and the second numbered conclusion is a consequence of Lemma \ref{constraint timing lemma} alone.
+\end{proof}
+
+\newpage
+\begin{thebibliography}{}
+
+\bibitem[\protect\citeauthoryear{Baumol}{Baumol}{1952}]{qje1952Baumol}
+Baumol, W.~J. (1952).
+\newblock {The Transactions Demand for Cash: An Inventory Theoretic Approach}.
+\newblock {\em Quarterly Journal of Economics\/}~{\em 66\/}(4), 545--556.
+
+\bibitem[\protect\citeauthoryear{Blundell, Etheridge, and Stoker}{Blundell
+  et~al.}{2014}]{wp2014BlundellEtheridgeStoker}
+Blundell, R., B.~Etheridge, and T.~Stoker (2014).
+\newblock {Precautionary Saving for Consecutive Life-Cycle Risks}.
+\newblock Working Paper; UCL, Essex, and MIT.
+
+\bibitem[\protect\citeauthoryear{Broda and Parker}{Broda and
+  Parker}{2014}]{jme2014BrodaParker}
+Broda, C. and J.~A. Parker (2014, December).
+\newblock {The Economic Stimulus Payments of 2008 and the aggregate demand for
+  consumption}.
+\newblock {\em Journal of Monetary Economics\/}~{\em 68\/}(Supplement),
+  S20--S36.
+
+\bibitem[\protect\citeauthoryear{Campbell and Hercowitz}{Campbell and
+  Hercowitz}{2009}]{jme2009CampbellHercowitz}
+Campbell, J.~R. and Z.~Hercowitz (2009).
+\newblock {Welfare Implications of the Transition to High Household Debt}.
+\newblock {\em Journal of Monetary Economics\/}~{\em 56\/}(1), 1--16.
+
+\bibitem[\protect\citeauthoryear{Campbell and Mankiw}{Campbell and
+  Mankiw}{1989}]{nber1989CampbellMankiw}
+Campbell, J.~Y. and N.~G. Mankiw (1989).
+\newblock {Consumption, Income, and Interest Rates: Reinterpreting the Time
+  Series Evidence}.
+\newblock In {\em NBER Macroeconomics Annual}, pp.\  185--216.
+
+\bibitem[\protect\citeauthoryear{Carroll and Kimball}{Carroll and
+  Kimball}{1996}]{ecta1996CarrollKimball}
+Carroll, C.~D. and M.~S. Kimball (1996).
+\newblock {On the Concavity of the Consumption Function}.
+\newblock {\em Econometrica\/}~{\em 64\/}(4), 981--992.
+
+\bibitem[\protect\citeauthoryear{Chetty and Szeidl}{Chetty and
+  Szeidl}{2007}]{qje2007ChettySzeidl}
+Chetty, R. and A.~Szeidl (2007).
+\newblock {Consumption Commitments and Risk Preferences}.
+\newblock {\em Quarterly Journal of Economics\/}~{\em 122\/}(2), 831--877.
+
+\bibitem[\protect\citeauthoryear{Hall}{Hall}{1978}]{jpe1978Hall}
+Hall, R.~E. (1978, December).
+\newblock {Stochastic Implications of the Life Cycle-Permanent Income
+  Hypothesis: Theory and Evidence}.
+\newblock {\em Journal of Political Economy\/}~{\em 86\/}(6), 971--987.
+
+\bibitem[\protect\citeauthoryear{Hall and Mishkin}{Hall and
+  Mishkin}{1982}]{econometrica1982HallMishkin}
+Hall, R.~E. and F.~S. Mishkin (1982, March).
+\newblock {The sensitivity of consumption to transitory income: Estimates from
+  panel data on households}.
+\newblock {\em Econometrica\/}~{\em 50\/}(2), 461--481.
+
+\bibitem[\protect\citeauthoryear{Hayashi}{Hayashi}{1987}]{worldCongress1987Hayashi}
+Hayashi, F. (1987).
+\newblock {Tests for liquidity constraints: a critical survey and some new
+  observations}.
+\newblock In T.~F. Bewley (Ed.), {\em Advances in Econometrics: Fifth World
+  Congress}, pp.\  91--120. Cambridge University Press.
+
+\bibitem[\protect\citeauthoryear{Jappelli}{Jappelli}{1990}]{qje1990Jappelli}
+Jappelli, T. (1990, February).
+\newblock {Who is Credit Constrained in the U.S. Economy?}
+\newblock {\em Quarterly Journal of Economics\/}~{\em 105\/}(1), 219--234.
+
+\bibitem[\protect\citeauthoryear{Jappelli and Pistaferri}{Jappelli and
+  Pistaferri}{2010}]{annualReview2010JappelliPistaferri}
+Jappelli, T. and L.~Pistaferri (2010, September).
+\newblock {The Consumption Response to Income Changes}.
+\newblock {\em Annual Review of Economics\/}~{\em 2\/}(1), 479--506.
+
+\bibitem[\protect\citeauthoryear{Johnson, Parker, and Souleles}{Johnson
+  et~al.}{2006}]{aer2006JohnsonParkerSouleles}
+Johnson, D.~S., J.~A. Parker, and N.~S. Souleles (2006, December).
+\newblock {Household Expenditure and the Income Tax Rebates of 2001}.
+\newblock {\em American Economic Review\/}~{\em 96\/}(5), 1589--1610.
+
+\bibitem[\protect\citeauthoryear{Kaplan and Violante}{Kaplan and
+  Violante}{2014}]{ecta2014KaplanViolante}
+Kaplan, G. and G.~L. Violante (2014).
+\newblock {A Model of the Consumption Response to Fiscal Stimulus Payments}.
+\newblock {\em Econometrica\/}~{\em 82\/}(4), 1199--1239.
+
+\bibitem[\protect\citeauthoryear{Kennickell and Lusardi}{Kennickell and
+  Lusardi}{2004}]{nber2004LusardiKennickell}
+Kennickell, A.~B. and A.~Lusardi (2004).
+\newblock {Disentangling the Importance of the Precautionary Saving Motive}.
+\newblock NBER Working Paper 10888.
+
+\bibitem[\protect\citeauthoryear{Kueng}{Kueng}{2018}]{qje2018Kueng}
+Kueng, L. (2018).
+\newblock Excess sensitivity of high-income consumers.
+\newblock {\em Quarterly Journal of Economics\/}~{\em Forthcoming}.
+
+\bibitem[\protect\citeauthoryear{Lusardi}{Lusardi}{1996}]{jbes1996Lusardi}
+Lusardi, A. (1996, January).
+\newblock {Permanent Income, Current Income, and Consumption: Evidence from Two
+  Panel Data Sets}.
+\newblock {\em Journal of Business and Economic Statistics\/}~{\em 14\/}(1),
+  81--90.
+
+\bibitem[\protect\citeauthoryear{Meghir and Pistaferri}{Meghir and
+  Pistaferri}{2004}]{ecta2004MeghirPistaferri}
+Meghir, C. and L.~Pistaferri (2004, January).
+\newblock {Income Variance Dynamics and Heterogeneity}.
+\newblock {\em Econometrica\/}~{\em 72\/}(1), 1--32.
+
+\bibitem[\protect\citeauthoryear{Parker}{Parker}{1999}]{aer1999Parker}
+Parker, J. (1999, September).
+\newblock {The Reaction of Household Consumption to Predictable Changes in
+  Social Security Taxes}.
+\newblock {\em American Economic Review\/}~{\em 89\/}(4), 959--973.
+
+\bibitem[\protect\citeauthoryear{Parker, Souleles, Johnson, and
+  McClelland}{Parker et~al.}{2013}]{aer2013ParkerSoulelesJohnsonMcClelland}
+Parker, J., N.~S. Souleles, D.~S. Johnson, and R.~McClelland (2013, October).
+\newblock {Consumer Spending and the Economic Stimulus Payments of 2008}.
+\newblock {\em American Economic Review\/}~{\em 103\/}(6), 2530--2553.
+
+\bibitem[\protect\citeauthoryear{Parker and Souleles}{Parker and
+  Souleles}{2017}]{nber2017ParkerSouleles}
+Parker, J.~A. and N.~S. Souleles (2017).
+\newblock {Reported Preference vs. Revealed Preference: Evidence from the
+  Propensity to Spend Tax Rebates}.
+\newblock NBER Working Paper 23920.
+
+\bibitem[\protect\citeauthoryear{Sahm, Shapiro, and Slemrod}{Sahm
+  et~al.}{2010}]{taxPolicy2010SahmShapiroSlemrod}
+Sahm, C.~R., M.~D. Shapiro, and J.~Slemrod (2010).
+\newblock {Household Response to the 2008 Tax Rebate: Survey Evidence and
+  Aggregate Implications}.
+\newblock {\em Tax Policy and the Economy\/}~{\em 24}, 69--110.
+
+\bibitem[\protect\citeauthoryear{Shapiro and Slemrod}{Shapiro and
+  Slemrod}{2003}]{aer2003ShapiroSlemrod}
+Shapiro, M.~D. and J.~Slemrod (2003, March).
+\newblock {Consumer Response to Tax Rebates}.
+\newblock {\em American Economic Review\/}~{\em 93\/}(1), 381--396.
+
+\bibitem[\protect\citeauthoryear{Shapiro and Slemrod}{Shapiro and
+  Slemrod}{2009}]{aer2009ShapiroSlemrod}
+Shapiro, M.~D. and J.~Slemrod (2009, May).
+\newblock {Did the 2008 Tax Rebates Stimulate Spending?}
+\newblock {\em American Economic Review\/}~{\em 99\/}(2), 374--379.
+
+\bibitem[\protect\citeauthoryear{Souleles}{Souleles}{2000}]{jpub2000Souleles}
+Souleles, N. (2000).
+\newblock {College Tuition and Household Savings and Consumption}.
+\newblock {\em Journal of Public Economics\/}~{\em 77}, 185--207.
+
+\bibitem[\protect\citeauthoryear{Souleles}{Souleles}{1999}]{aer1999Souleles}
+Souleles, N.~S. (1999, September).
+\newblock {The Response of Household Consumption to Income Tax Refunds}.
+\newblock {\em American Economic Review\/}~{\em 89\/}(4), 947--958.
+
+\bibitem[\protect\citeauthoryear{Souleles}{Souleles}{2002}]{jpube2002Souleles}
+Souleles, N.~S. (2002, July).
+\newblock {Consumer response to the Reagan tax cuts}.
+\newblock {\em Journal of Public Economics\/}~{\em 85\/}(1), 99--120.
+
+\bibitem[\protect\citeauthoryear{Tobin}{Tobin}{1956}]{restat1956Tobin}
+Tobin, J. (1956).
+\newblock {The Interest-Elasticity of Transactions Demand for Cash}.
+\newblock {\em Review of Economics and Statistics\/}~{\em 38\/}(3), 241--247.
+
+\bibitem[\protect\citeauthoryear{Zeldes}{Zeldes}{1984}]{mit1984Zeldes}
+Zeldes, S.~P. (1984, July).
+\newblock {\em {Optimal Consumption with Stochastic Income: Deviations from
+  Certainty Equivalence}}.
+\newblock Ph.\ D. thesis, MIT.
+
+\bibitem[\protect\citeauthoryear{Zeldes}{Zeldes}{1989}]{jpe1989Zeldes}
+Zeldes, S.~P. (1989, April).
+\newblock {Consumption and Liquidity Constraints: An Empirical Investigation}.
+\newblock {\em Journal of Political Economy\/}~{\em 97\/}(2), 305--346.
+
+\end{thebibliography}
+
+\end{document}
 
