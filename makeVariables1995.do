@@ -1,6 +1,5 @@
 //makeVariables1995.do
 //This program loads the 1995 Survey of Consumer Finance data and generates variables of interest for later analysis.
-//This code is nearly identical to that in makeVariables2001.do, which was developed first. The principle differences between the two reflect changes to the hard-coded tax ``parameters.''
 
 version 12.1
 
@@ -124,8 +123,7 @@ replace spouseBusiness=0 if spouseBusiness==-1
 
 
 //\section{Contributions to Employer-Sponsored Retirement Plans}
-// The variables used to calculate the household's year 2000 contributions to employer-sponsored plans are\footnote{See page 118 of the interview questionare for more information.}
-// At most three plans are coded, and each one is either a thrift/retirement plan or a tax-deferred savings plans. (See skip for Question 19 on page 121 of the interview questionare.}
+// The variables used to calculate the household's year 1994 contributions to employer-sponsored plans are
 /* \begin{itemize}
 \item x4206, x4306, x4406; the percentages of wages and salaries contributed by R to the first three employer-sponsored thrift or retirement plans.
 \item x4207, x4307, x4407; the dollar amounts contributed by R to the first three employer sponsored thrift or retirement plans.
@@ -172,7 +170,6 @@ NOTE: where possible, X4112/X4712 was used to compute the
 \end{quote}
 */
 //This implies that adding the given contributions (appropriately adjusted for their frequency) gives the right contribution unless someone reported a percentage contribution with zero income. 
-//This does not appear to be a large problem in the 1998 SCF. (This can be formalized later.) Accordingly, we simply sum the appropriate contributions.
 
 //The codebook allows for some fairly odd contribution schedules (e.g. ``By the job/piece''). The next code sets these to missing. 
 
