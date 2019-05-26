@@ -1,6 +1,5 @@
 //makeVariables1998.do
 //This program loads the 1998 Survey of Consumer Finance data and generates variables of interest for later analysis.
-//This code is nearly identical to that in makeVariables2001.do, which was developed first. The principle differences between the two reflect changes to the hard-coded tax ``parameters.''
 
 version 12.1
 
@@ -70,7 +69,7 @@ gen overTenYears=planningPeriod==5
 //\section{Labor Income Measurement}
 // We use these measures to divide total income between the respondent and spouse when calculating total contributions to employer-sponsored retirement accounts.
 
-//\subsection{respondent's Pre-Tax Labor Income}
+//\subsection{Respondent's Pre-Tax Labor Income}
 // The variables we use to measure the respondent's pre-tax labor income are
 //\begin{itemize}
 //\item |x4112| is amount earned per pay period;
@@ -118,8 +117,9 @@ replace spouseBusiness=0 if spouseBusiness==-1
 
 
 //\section{Contributions to Employer-Sponsored Retirement Plans}
-// The variables used to calculate the household's year 2000 contributions to employer-sponsored plans are\footnote{See page 118 of the interview questionare for more information.}
-// At most three plans are coded, and each one is either a thrift/retirement plan or a tax-deferred savings plans. (See skip for Question 19 on page 121 of the interview questionare.}
+
+// At most three plans are coded, and each one is either a thrift/retirement plan or a tax-deferred savings plans.
+// The variables used to calculate the household's year 1997 contributions to employer-sponsored plans are
 /* \begin{itemize}
 \item x4206, x4306, x4406; the percentages of wages and salaries contributed by R to the first three employer-sponsored thrift or retirement plans.
 \item x4207, x4307, x4407; the dollar amounts contributed by R to the first three employer sponsored thrift or retirement plans.
@@ -166,7 +166,6 @@ NOTE: where possible, X4112/X4712 was used to compute the
 \end{quote}
 */
 //This implies that adding the given contributions (appropriately adjusted for their frequency) gives the right contribution unless someone reported a percentage contribution with zero income. 
-//This does not appear to be a large problem in the 1998 SCF. (This can be formalized later.) Accordingly, we simply sum the appropriate contributions.
 
 //The codebook allows for some fairly odd contribution schedules (e.g. ``By the job/piece''). The next code sets these to missing. 
 
@@ -254,7 +253,7 @@ replace taxR=11266.00+0.31*(agiR-49800) if agiR>49800 & agiR<=75875 & mfs==1
 replace taxR=19345.25+0.36*(agiR-75875) if agiR>75875 & agiR<=135525 & mfs==1
 replace taxR=40823.25+0.396*(agiR-135525) if agiR>135525 & mfs==1
 
-// Read the spouse's taxes off of the 2000 tax table.
+// Read the spouse's taxes off of the 1997 tax table.
 replace taxS=agiS*0.15 if agiS<= 20600 & mfs==1
 replace taxS=3090.00+0.28*(agiS-20600) if agiS>20600 & agiS<=49800 & mfs==1
 replace taxS=11266.00+0.31*(agiS-49800) if agiS>49800 & agiS<=75875 & mfs==1
@@ -373,7 +372,6 @@ replace ficaSpouse=4054.80 if ficaSpouse>4054.80
 replace ficaResp=2*ficaResp 	if x4106==2|x4106==3
 replace ficaSpouse=2*ficaSpouse if x4706==2|x4706==3
 
-
 //Sum the two partners' fica taxes together.
 gen fica=ficaResp+ficaSpouse
 
@@ -397,7 +395,7 @@ gen medicare=medicareResp+medicareSpouse
 replace medicare=0.0145*x5702 if respShare==. & ~(x4106 ==2 | x4106 ==3 | x4706==2 | x4706 == 3)
 replace medicare=0.0290*x5702 if respShare==. &  (x4106 ==2 | x4106 ==3 | x4706==2 | x4706 == 3)
 
-//We estimated federal income taxes on wages and salaries by applying the household's average federal tax rate to total labor income and truncating the result at the lowest and highest statuatory marginal tax rates in 2000, 15 and 39.6 percent.
+//We estimated federal income taxes on wages and salaries by applying the household's average federal tax rate to total labor income and truncating the result at the lowest and highest statuatory marginal tax rates in 1997, 15 and 39.6 percent.
 gen taxrate=tax/totalincome
 replace taxrate=0.396 if taxrate>0.396
 replace taxrate=0.15 if taxrate<0.15
