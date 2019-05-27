@@ -2,7 +2,7 @@
 //This program loads the 2007 Survey of Consumer Finance data and generates variables of interest for later analysis.
 
 //\section{Overhead}
-//This section sets runtime options, loads the memory, and calls |bulletin.do| from the scf project to create useful aggregates.
+
 version 12
 
 //Load the data
@@ -269,7 +269,7 @@ replace tax = 94656.50+0.35*(agi-336550)	if agi>336550					& hh==1
 drop agi
 
 //\section{Measurement of Total Income}
-//We measure total income and labor income using the sequence of roundup income questions beginning with X5701. This allows us to measure the fraction of total income from wages and salaries.
+//We measure total income and labor income using the sequence of roundup income questions beginning with X5702. This allows us to measure the fraction of total income from wages and salaries.
 // The variables used for this task are
 /* \begin{itemize}
 \item X5702, wage and salary income
