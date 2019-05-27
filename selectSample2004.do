@@ -65,7 +65,7 @@ egen nhouseholdsNoTANF=sum(weight)
 replace nhouseholdsNoTANF=nhouseholdsNoTANF/5
 gen nrecordsNoTANF=_N/5
 
-//Drop those who have labor income less than the 2000 Federal poverty line(s) for householders under 65 years old. (Taken from http://www.census.gov/hhes/www/poverty/data/threshld/index.html)
+//Drop those who have labor income less than the 2000 Federal poverty line(s) for householders under 65 years old.  (See https://www2.census.gov/programs-surveys/cps/tables/time-series/historical-poverty-people/hstpov1.xls)
 gen poverty=0
 replace poverty=1 if x101==1 & laborincome<9573
 replace poverty=1 if x101==2 & laborincome<12384

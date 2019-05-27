@@ -171,7 +171,7 @@ gen employersponsored=employersponsoredR+employersponsoredS
 
 //\section{AGI and Tax Measurement}
 // We wish to examine the ratio of wealth to \emph{after tax} labor income, so we must arrive at a measure of taxes paid on labor income for each respondent household. 
-// For this, we first measure the household's AGI and then apply the relevant tax table from 2000.
+// For this, we first measure the household's AGI and then apply the relevant tax table from 2003.
 /* The variables used for this measurement are
 \begin{itemize}
 \item x101, number of people living in the household/primary economic unit.
