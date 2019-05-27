@@ -2,7 +2,6 @@
 //This program loads the 2001 Survey of Consumer Finance data and generates variables of interest for later analysis.
 
 //\section{Overhead}
-//This section sets runtime options, loads the memory, and calls |bulletin.do| from the scf project to create useful aggregates.
 
 version 12.1
 
@@ -127,8 +126,8 @@ replace spouseBusiness=0 if spouseBusiness==-1
 
 
 //\section{Contributions to Employer-Sponsored Retirement Plans}
-// The variables used to calculate the household's year 2000 contributions to employer-sponsored plans are\footnote{See page 118 of the interview questionare for more information.}
-// At most three plans are coded, and each one is either a thrift/retirement plan or a tax-deferred savings plans. (See skip for Question 19 on page 121 of the interview questionare.}
+// At most three plans are coded, and each one is either a thrift/retirement plan or a tax-deferred savings plans.
+// The variables used to calculate the household's year 2000 contributions to employer-sponsored plans are
 /* \begin{itemize}
 \item x4206, x4306, x4406; the percentages of wages and salaries contributed by R to the first three employer-sponsored thrift or retirement plans.
 \item x4207, x4307, x4407; the dollar amounts contributed by R to the first three employer sponsored thrift or retirement plans.
