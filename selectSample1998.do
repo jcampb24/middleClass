@@ -1,6 +1,6 @@
 //selectSample1998.do
 //This do file selects observations from the 1998 SCF for later analysis.
-//This should be run after makeVariables.do
+//This should be run after makeVariables1998.do
 
 // Before proceeding, count the number of households in the sample.
 
