@@ -35,7 +35,7 @@ mata:
 end
 
 foreach year in `years' {
-	//Preliminaries. Use |makeVariables.do| and |selectSample.do| to get things started.
+	//Preliminaries. Use |makeVariablesYEAR.do| and |selectSampleYEAR.do| to get things started.
 	do makeVariables`year'
 	do selectSample`year'
 	
@@ -115,7 +115,7 @@ foreach year in `years' {
 		replace funeral = (funeral | x6848==17)
 	}
 	
-	//All gterm saving motives
+	//All term saving motives
 	gen term = (childEducation | adultEducation | barmitzvah | firsthome | secondhome | automobile | travel | funeral)
 
 	//Retirement and estate saving
@@ -177,7 +177,7 @@ mata:
 	}
 	line1=line1+"\\ \hline"
 		
-	//Delete the output files if they already exist, open them, and write the header lines.		
+	//Delete the output file if it already exist, open it, and write the header lines.		
 	unlink("whySave.tex")
 	f1=fopen("whySave.tex","w")
 	
