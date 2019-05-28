@@ -4,7 +4,6 @@
 
 set more off
 set maxvar 10000
-//First, load the data and select the sample.
 
 tempfile masterTable
 gen linkvariable=_n
@@ -22,18 +21,7 @@ keep if _n==1
 order nrecordsStart nrecordsNotImputed nrecordsAge nrecordsNoTANF nrecordsNonPoverty nrecordsWealth nrecordsSelfEmployed 
 xpose, clear
 format v1 %4.0f
-gen labels=""
-replace labels="Records in Original Sample," if _n==1
-replace labels = "\hspace{20pt} without imputed Age or Saving Survey responses," if _n==2
-replace labels = " \hspace{20pt} \& with heads between 25 and 64 years old," if _n==3
-replace labels = " \hspace{20pt} \& that received no SNAP," if _n==4
-replace labels = " \hspace{20pt} \& that had labor income above the poverty line," if _n==5
-replace labels = " \hspace{20pt} \& are among least wealthy $95$th percentile of remaining records" if _n==6
-replace labels = " \hspace{20pt} \& are not self-employed." if _n==7
 
-//Labels for slides.
-
-drop labels
 gen labels=""
 replace labels="Records$^{\textrm{(ii)}}$" if _n==1
 replace labels = "\hspace{20pt}  without imputed variables," if _n==2
