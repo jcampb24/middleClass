@@ -1,7 +1,6 @@
 //ageTables.do
 //This do file calculates the tables of average ages and expenditure frequencies by age.
 //set maxvar 10000
-pause off
 set maxvar 10000
 local years 1995 1998 2001 2004 2007 
 local numberOfYears : word count `years'
@@ -65,19 +64,10 @@ matrix colnames savingFrequency = `expenditureFrequencyColNamesH' `expenditureFr
 
 //To make the tables, we cycle through the years constructing the results and placing them in |averageAge|, |expenditureFrequency|, |savingFrequency|, |averageAgeSE|, |expenditureFrequencySE|, and |savingFrequencySE|.
 foreach year in `years' {
-	//Preliminaries. Use |makeVariables.do| and |selectSample.do| to get things started.
+	//Preliminaries. Use |makeVariablesYEAR.do| and |selectSampleYEAR.do| to get things started.
 	do makeVariables`year'
 	do selectSample`year'
 	
-	/*
-	replace expense=(home+education+medical==1) & savingNow
-	gen home1 = home==1 & education+medical==0 & savingNow
-	gen education1 = education==1 & home+medical==0 & savingNow
-	gen medical1 = medical==1 & home+education==0 & savingNow
-	replace home=home1
-	replace education=education1
-	replace medical=medical1
-	*/
 	replace home=home & savingNow
 	replace education = education & savingNow
 	replace medical = medical & savingNow
