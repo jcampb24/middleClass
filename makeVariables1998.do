@@ -41,21 +41,6 @@ gen home=(x3011==21) ///
 	+(x6667==21)
 replace home=home>=1
 
-gen burial=(x3011==23) ///
-	+(x3012==23) ///
-	+(x3013==23) ///
-	+(x7512==23) ///
-	+(x7511==23) ///
-	+(x6667==23)
-replace burial=burial>=1
-
-gen travel=(x3011==26) ///
-	+(x3012==26) ///
-	+(x3013==26) ///
-	+(x7512==26) ///
-	+(x7511==26) ///
-	+(x6667==26)
-	
 //Measure the planning period and generate dummies based on it.
 rename x3008 planningPeriod
 label define planningPeriodValues 1 "Next Few Months" 2 "Next Year" 3 "Next Few Years" 4 "Next 5-10 Years" 5 "Longer than 10 Years"

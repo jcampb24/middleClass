@@ -49,22 +49,6 @@ gen home=(x3011==21) ///
 	+(x6667==21)
 replace home=home>=1
 
-gen burial=(x3011==23) ///
-	+(x3012==23) ///
-	+(x3013==23) ///
-	+(x7512==23) ///
-	+(x7511==23) ///
-	+(x6667==23)
-replace burial=burial>=1
-
-gen travel=(x3011==26) ///
-	+(x3012==26) ///
-	+(x3013==26) ///
-	+(x7512==26) ///
-	+(x7511==26) ///
-	+(x6667==26)
-replace travel=travel>=1
-
 //Measure the use of educational spending accounts (used to respond to a referee.)
 gen esa = (x3732==2 | x3732==3) ///
 	+ (x3738==2 | x3738==3) ///
