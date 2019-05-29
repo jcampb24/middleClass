@@ -2,7 +2,6 @@
 // This file compiles the frequency of term saving.
 
 //set maxvar 10000
-pause on
 local years 1995 1998 2001 2004 2007 
 local numberOfYears : word count `years'
 
@@ -26,7 +25,7 @@ foreach year in `years' {
 	
 	local vars expense savingNow
 
-	if year==2007 | year == 2010 | year == 2013 {
+	if year==2007 {
 		local vars `vars' savingDone
 	}
 
@@ -76,9 +75,5 @@ mata:
 	//Write the tabular environment's closing delimiter and close the output files.
 	fput(f1,"\end{tabular}")
 	fclose(f1)
-
-
-
-
 
 end
