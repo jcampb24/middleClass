@@ -18,7 +18,6 @@ algorithm=specifyAlgorithm(algorithm);
 %Specify the standard dynamic program.
 dp=specifyDynamicProgram('preferences',preferences,...
     'opportunities',opportunities,'algorithm',algorithm);
-keyboard;
 
 %Solve the dynamic program.
 dp=solveStandardDynamicProgram(dp);
@@ -28,33 +27,6 @@ dp=solveStandardDynamicProgram(dp);
 %so we abandon that field. (It still exists as a distributed array.)
 dpHere=gatherStandardDynamicProgram(dp,'abandon','staticPayoffs');
 dpHere=induceMarkovChainFromStandardDynamicProgram(dpHere);
-
-if 0
-    
-indicesOfInterest=find(dpHere.inducedMarkovChain.ergodicDistribution);
-pointsOfInterest=sort(unique(dpHere.nodes.support(indicesOfInterest,1)));
-breakPoints=[pointsOfInterest'-0.005; pointsOfInterest'+0.005];
-stepSizes=zeros(size(breakPoints));
-stepSizes(1,:)=dp.algorithm.stepSizes(1);
-stepSizes(2,:)=5e-6;
-breakPoints=breakPoints(:);
-stepSizes=stepSizes(:);
-breakPoints=[breakPoints(2:end); dp.algorithm.breakPoints];
-stepSizes = [stepSizes(2:end); dp.algorithm.stepSizes];
-keyboard;
-algorithm=specifyAlgorithm('breakPoints',breakPoints,...
-    'stepSizes',stepSizes,...
-    'convergenceTolerance',dp.algorithm.convergenceTolerance,...
-    'iterationCountCeiling',dp.algorithm.iterationCountCeiling);
-
-
-dpNew=specifyDynamicProgram('preferences',preferences,'opportunities',opportunities,'algorithm',algorithm);
-dpNew=initializeStandardDynamicProgramValueFunction(dpHere,dpNew);
-
-dp=solveStandardDynamicProgram(dpNew);
-dpHere=gatherStandardDynamicProgram(dp,'abandon','staticPayoffs');
-dpHere=induceMarkovChainFromStandardDynamicProgram(dpHere);
-end
 
 %Calculate the savings policy for each value of $\kappa$ and plot them.
 states=dpHere.nodes.support;
@@ -263,7 +235,7 @@ if kappa(ergodicCycle.index(1))~=1
     ergodicCycle.index=[ergodicCycle.index; ergodicCycle.index(1)];
 end
 
- %Retrieve the value of kappa associated with each element of the cycle.
+%Retrieve the value of kappa associated with each element of the cycle.
 ergodicCycle.kappa=kappa(ergodicCycle.index);   
 
 %Calculate wealth at each stage of the ergodic cycle.
