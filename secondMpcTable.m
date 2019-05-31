@@ -42,44 +42,6 @@ for ii=1:length(categories)-1
     wealthCategory=wealthCategory+(dp.nodes.support(:,1)./dp.nodes.support(:,4)>categories(ii)/12);
 end
 
-% 
-% %For each stage of the expenditure cycle, calculate the distribution of
-% %households across the (unconditional) quantiles.
-% wealthDistributionByKappa=zeros(4,dp.preferences.tau);
-kappaIndex=find(strcmp(dp.nodes.names,'\kappa_t'),1,'first');
-kappa=dp.nodes.support(:,kappaIndex);
-% 
-% for i=0:3
-%    for j=1:dp.preferences.tau
-%       wealthDistributionByKappa(i+1,j)=sum(originalWealthDistributionPDF(...
-%           wealthCategory==i & kappa==j))./ ...
-%       sum(originalWealthDistributionPDF(kappa==j));
-%    end
-%     
-% end
-% 
-% %Save the results to a LaTeX table.
-% 
-% leftColumn=cell(4,1);
-% leftColumn{1}='(0,25]';
-% leftColumn{2}='(25,50]';
-% leftColumn{3}='(50,75]';
-% leftColumn{4}='(75,100)';
-% 
-% wealthDistributionTable=makeLaTeXTable('data',100*wealthDistributionByKappa,...
-%     'leftColumn',leftColumn);
-% 
-% %Write the mpc table to a file.
-% f1=fopen('baselineCalibrationWealthDistribution.tex','w');
-% nRows=length(wealthDistributionTable);
-% for i=1:nRows
-%    fprintf(f1,'%s\n',wealthDistributionTable{i}); 
-% end
-% fclose(f1);
-% 
-% keyboard;
-
-
 %The third column reports the fraction of a one-off wealth gift equal
 %to 10 percent of wage that gets spent. For this, we add 0.10 to each
 %individual's wage and then run the value function through the Bellman
