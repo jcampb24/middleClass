@@ -42,6 +42,9 @@ for ii=1:length(categories)-1
     wealthCategory=wealthCategory+(dp.nodes.support(:,1)./dp.nodes.support(:,4)>categories(ii)/12);
 end
 
+kappaIndex=find(strcmp(dp.nodes.names,'\kappa_t'),1,'first');
+kappa=dp.nodes.support(:,kappaIndex);
+
 %The third column reports the fraction of a one-off wealth gift equal
 %to 10 percent of wage that gets spent. For this, we add 0.10 to each
 %individual's wage and then run the value function through the Bellman
