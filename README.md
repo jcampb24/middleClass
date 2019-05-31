@@ -19,4 +19,4 @@ To run the Matlab programs, you must have a preexisting parallel pool. We recomm
 
 These files all rely on baselineCalibration.mat, which contains the baseline calibration's parameter values and its solution.
 
-If you have any problems replicating the paper's results or if you need to gain access to a Beowulf cluster.
+If you have any problems replicating the paper's results or if you need to gain access to a Beowulf cluster. please contact Jeff Campbell at jyrc@me.com. We run a public GitHub repository for this file at  You can look to it for updates and improvements.
